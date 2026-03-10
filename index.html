@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErtWeb - SVG Animation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="loader-container">
+
+        <div class="contenedor-logos">
+
+            <!-- SVG2: La cara / ícono -->
+            <svg class="svg2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500">
+                <path class="borde-cara"
+                    d="M1166.22 903.48c16.74 110.64-48.53 190.83-144.77 242.39-103.73 55.57-220.68 83.28-339.1 77.71-102.84-4.83-207.95-47.47-220.39-162.64-61.66 1.72-119.25-36.25-128.76-98.25-8.79-57.33 28.4-107.04 79.28-128.47l-10.26-47.93c-45.05 3.69-79.04-23.19-99.95-52.56-30.03-42.17-3.91-81.59-3.21-120.84.66-36.76-28.8-75.25.87-117.11 20.93-29.53 54.6-58.66 101.42-53.82-20.07-40.17-10.53-81.73 19.34-110.03 29.06-27.53 74.11-25.63 109.32-8.21 22.84-47.13 65.2-85.15 112.74-93.6 61.85-10.99 111.45 15.41 151.39 59.31 41.03-28.47 92.07-45.12 144.95-27.56 45.27 15.03 74.04 60.26 93.75 104.2 37.28-1.01 93.39-2.58 111.84 48.77 14.34 39.88-3.63 84.32-45.18 105.46 48.18 117.45-28 58.74 7.26 155.23 61.04-4.68 117.96 29.92 132.49 88.57 15.33 61.89-27.92 108.62-73.04 139.37Zm-61.34 3.88-16.45-47.5c13-5.1 25.39-4.08 40.22-7.39 34.12-7.61 63.68-41.54 53.73-78.12-9.31-34.21-49.66-47.74-81.2-39.66-13.69 3.51-23.39 9.95-36.31 10.96l-25.36-103.16c-39.39 5.64-78.95-11.86-114.06-25.12-18.28 30.99-45.97 60.98-76.53 69.63-42.58 12.05-79.33 4.14-116.14-18.39-52.39 91.41-157.03 125.57-252.22 87.7-7.27-2.89-23.65 10.53-22.1 17.52l23.3 104.85c-16.55 3.79-31.59 2.52-47.26 8.54-27.65 10.63-51.97 39.43-44.13 70.64 9.43 37.53 52.68 53.34 87.22 42.73 14.4-4.42 25.07-10.61 40.08-12.17-2.64 63.85-1.73 123.68 62.59 153.57 179.59 83.44 587.86-52.01 524.61-234.63Z" />
+                <path class="detalle-cara"
+                    d="M632.8 982.04c-22.3-13.4-28.01-36.73-31.29-58.69-14.14 9.16-20.17 22.58-28.77 35.69-11.72-3.17-21.92-6.06-32.17-15.27 26.16-57.45 93.52-97.1 157.26-78.41 41.58 12.2 50.87 71.35 25.01 101.75-22.49 26.43-60.67 32.58-90.04 14.93m31.52-26.92c17.46 1.06 31.87-6.67 35.13-20.13 2.89-11.94.7-29.84-13.33-35.57-11.1-4.54-27.71-5.09-38.18 1.51-10.75 6.78-9.88 22.73-7.12 33.76 2.13 8.53 8.77 19.54 23.49 20.43ZM926.38 908.5c-23.95-12.01-31.77-35.99-35.03-60.54-14.46 7.96-19.64 22.67-29.57 35.36-11.44-3.7-22.5-6.38-31.55-15.58 27.2-58.14 95.03-97.38 158.53-77.55 41.24 12.88 49.19 72.43 23.17 102-21.47 24.39-56.75 30.75-85.55 16.31m49.31-84.72c-11.26-4.43-31.16-5.58-38.95 1.92-14.58 14.05-9.21 43.72 8.59 51.47 16.01 6.97 35.86-.13 42.29-13.86 5.31-11.36 4.11-33.21-11.93-39.53M741.3 822.7l-205.02 46.07c-5.98-17.16-7.98-33.19-10.85-52.31zM1024.5 751.67l-198.15 49.94 181.89-100.73c9.22 15.49 10.08 28.49 16.26 50.79M904.28 1032.37c-103.37-5.93-50.35-16.38-136.21 31.59-8.48-4.3-12.78-12.35-16.59-24.58 94.08-54.17 40.64-44.89 154.64-36.56 1.3 11.87.33 19.88-1.83 29.55Z" />
+            </svg>
+
+            <!-- SVG1: El texto "ertweb" — ORDENADO de izquierda a derecha -->
+            <svg class="svg1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500">
+                <!-- 1. "e" izquierda (~261) -->
+                <path class="pedazo-texto"
+                    d="M261.1 818.71c20.65 8.51 51.4 5.53 67.95-12.71l20.09 23c-23.21 28.21-68.79 31.46-100.74 20.21-33.69-11.87-53.2-42.34-52.91-77.57.3-36.89 22.68-68.41 58.71-77.93 44.01-11.63 90.59 8.22 102.73 54.19 3.2 12.11 3.93 23.96 2.52 36.8l-125.64.23c2 15.62 12.96 27.89 27.28 33.79Zm63.41-59.63c-4.22-24.94-24.06-38.73-46.46-38.38-23.17-.16-42.04 15.89-44.95 39.09z" />
+                <!-- 2. "r" (~468) -->
+                <path class="pedazo-texto"
+                    d="M468.31 698.2v29.99c-7.68 0-14.42-.28-21.26.82-23.88 3.82-40.61 22.89-40.7 47.14l-.3 82.56h-37.56l.06-160.46h35.41l.99 21.92c20.66-25.5 32.6-22.04 63.37-21.96Z" />
+                <!-- 3. "t" (~469) -->
+                <path class="pedazo-texto"
+                    d="M469.8 728.19v-29.98l25.58-.31.49-35.13c11.47-.06 22.39-.9 33.73.33-1.93 8.89-3.49 16.43-3.19 24.68.73 20.31 14.08 35.61 33.76 39.63-9.47 2.27-17.04-.25-26.66 1.05l-.06 79.65c0 7.1 3.15 13.63 7.89 17.33 14.6 11.4 26.6-4.06 38.48 7.9 3.75 3.77 5.06 11.42 7.09 17.29-14.95 10.45-32.36 11.6-49.65 9.26-23.93-3.23-41.06-21.23-41.23-45.65l-.59-85.74c-9.23-.71-17.47-.31-25.64-.31" />
+                <!-- 4. Ícono cara en el texto (~666-870) — CENTRO -->
+                <path class="pedazo-texto"
+                    d="M870.77 768.61c6.41 42.33-18.57 73.02-55.39 92.75-39.69 21.26-84.44 31.87-129.76 29.74-39.35-1.85-79.57-18.16-84.33-62.23-23.59.66-45.63-13.87-49.27-37.59-3.37-21.94 10.87-40.96 30.34-49.16l-3.93-18.34c-17.24 1.41-30.24-8.87-38.24-20.11-11.49-16.14-1.5-31.22-1.23-46.24.25-14.07-11.02-28.8.33-44.81 8.01-11.3 20.89-22.44 38.81-20.59-7.68-15.37-4.03-31.27 7.4-42.1s28.36-9.81 41.83-3.14c8.74-18.03 24.95-32.58 43.14-35.81 23.67-4.2 42.64 5.9 57.93 22.7 15.7-10.9 35.23-17.27 55.46-10.55 17.32 5.75 28.33 23.06 35.87 39.87 14.26-.39 35.73-.99 42.8 18.66 5.49 15.26-1.39 32.26-17.29 40.35 18.43 44.94-10.72 22.48 2.78 59.4 23.36-1.79 45.14 11.45 50.7 33.89 5.87 23.68-10.68 41.56-27.95 53.33Zm-23.47 1.48-6.29-18.17c4.97-1.95 9.71-1.56 15.39-2.83 13.06-2.91 24.37-15.9 20.56-29.89-3.56-13.09-19-18.27-31.07-15.17-5.24 1.34-8.95 3.81-13.89 4.2l-9.7-39.47c-15.07 2.16-30.21-4.54-43.65-9.61-6.99 11.86-17.59 23.33-29.28 26.64-16.29 4.61-30.35 1.58-44.44-7.04-20.05 34.98-60.09 48.05-96.51 33.56-2.78-1.11-9.05 4.03-8.46 6.7l8.92 40.12c-6.33 1.45-12.09.96-18.08 3.27-10.58 4.07-19.89 15.09-16.89 27.03 3.61 14.36 20.16 20.41 33.37 16.35 5.51-1.69 9.59-4.06 15.34-4.66-1.01 24.43-.66 47.33 23.95 58.76 68.72 31.93 224.94-19.9 200.74-89.78Z" />
+                <path class="pedazo-texto"
+                    d="M666.66 798.67c-8.53-5.13-10.72-14.05-11.97-22.46-5.41 3.5-7.72 8.64-11.01 13.66-4.48-1.21-8.39-2.32-12.31-5.84 10.01-21.98 35.79-37.16 60.18-30 15.91 4.67 19.47 27.3 9.57 38.93-8.61 10.11-23.21 12.47-34.45 5.71Zm12.06-10.3c6.68.41 12.19-2.55 13.44-7.7 1.11-4.57.27-11.42-5.1-13.61-4.25-1.74-10.6-1.95-14.61.58-4.11 2.59-3.78 8.7-2.72 12.92.82 3.26 3.36 7.48 8.99 7.82Z" />
+                <path class="pedazo-texto"
+                    d="M779 770.53c-9.16-4.6-12.16-13.77-13.4-23.17-5.53 3.05-7.52 8.68-11.31 13.53-4.38-1.41-8.61-2.44-12.07-5.96 10.41-22.25 36.36-37.26 60.66-29.67 15.78 4.93 18.82 27.72 8.87 39.03-8.21 9.33-21.72 11.77-32.73 6.24Zm18.86-32.42c-4.31-1.7-11.92-2.14-14.9.73-5.58 5.38-3.52 16.73 3.29 19.69 6.12 2.67 13.72-.05 16.18-5.3 2.03-4.35 1.57-12.71-4.57-15.13Z" />
+                <path class="pedazo-texto" d="M708.18 737.7l-78.45 17.63c-2.29-6.57-3.05-12.7-4.15-20.02z" />
+                <path class="pedazo-texto" d="M816.54 710.52l-75.82 19.11 69.6-38.54c3.53 5.93 3.86 10.9 6.22 19.44Z" />
+                <path class="pedazo-texto"
+                    d="M770.54 817.92c-39.55-2.27-19.26-6.27-52.12 12.09-3.24-1.64-4.89-4.73-6.35-9.41 36-20.73 15.55-17.18 59.17-13.99.5 4.54.13 7.61-.7 11.31" />
+                <!-- 5. "w" (~958) -->
+                <path class="pedazo-texto"
+                    d="m958.3 753.25-29.95 94.48-32.81-.39c-4.73-16.09-10.7-31.45-14.16-47.89-1.89-8.97 1.42-18.34-1.85-27.98 9.54-3.85 15.44-9.9 21.42-18.19l12.99 38.23 30.31-96.6 29.28-.11 30.17 98.41 30.5-98.31 32.69.25-46.29 152.42-32.73.18-29.58-94.48z" />
+                <!-- 6. "e" derecha (~1185) -->
+                <path class="pedazo-texto"
+                    d="M1185.25 807.91l19.63 22.29c-22.4 27.06-65.79 30.24-96.26 20.07-33.87-11.31-53.65-41.86-52.77-77.2.85-34.41 21.33-63.74 54.8-73.59 17.36-5.11 35.58-5.08 52.94.38 37.95 11.94 56.33 49.49 51.1 87.26l-122.09.22c4.21 22.24 22.55 35.18 43.74 36.82 17.95 1.38 35.1-2.02 48.91-16.23Zm-4.27-45.71c-4.26-24.39-23.38-37.38-44.65-37.13-22.39-.35-41.25 14.93-43.88 37.91z" />
+                <!-- 7. "b" (~1372) -->
+                <path class="pedazo-texto"
+                    d="M1372.61 776.86c2.04 41.91-30.09 73.63-70.56 73.38-17.86-.11-34.46-5.21-46.96-19.13-1.85 6.31-.29 10.88-1.02 16.94l-31.46.1-.03-195.73c10.72-1.43 20.96-.3 32.92-.62l.74 71.4c13.94-13.47 29.97-18.2 47.83-17.86 39.15.74 69.82 31.18 68.53 71.52Zm-75.2 45.03c25.82-.03 41.9-19.86 41.95-44.28.05-23.78-15.53-42.99-39.58-44.16-26.42-1.29-44.84 18.33-44.71 44.18.12 24.5 16.24 44.3 42.33 44.27Z" />
+            </svg>
+
+        </div>
+    </div>
+
+    <div class="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-left">
+                <p>ertweb</p>
+            </div>
+            <div class="menu-left-center">
+                <p>desarrollador web</p>
+            </div>
+            <ul class="menu-list">
+                <li><a href="#" class="menu-link title" data-i18n="nav_work">Trabajos</a></li>
+                <li><a href="#" class="menu-link title" data-i18n="nav_about">Sobre mí</a></li>
+                <li><a href="#" class="menu-link title" data-i18n="nav_contact">Contacto</a></li>
+            </ul>
+            <ul class="social">
+                <li><a href="#" class="menu-link title">instagram</a></li>
+                <li><a href="#" class="menu-link title">twitter</a></li>
+                <li><a href="#" class="menu-link title">tiktok</a></li>
+            </ul>
+            <div class="menu-right">
+                <p>caracas, ve</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-bottom">
+            <div class="hero-text">
+                <p id="hero-paragraph">Especializado en desarrollo web moderno. Construyo aplicaciones rápidas,
+                    accesibles y escalables
+                    utilizando las últimas tecnologías para resolver problemas reales.</p>
+                <a href="#" class="button">
+                    <div class="button__wrapper">
+                        <span class="button__text" data-i18n="btn_contact">Contacto
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_iconCarrier">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M9 6.75C8.58579 6.75 8.25 6.41421 8.25 6C8.25 5.58579 8.58579 5.25 9 5.25H18C18.4142 5.25 18.75 5.58579 18.75 6V15C18.75 15.4142 18.4142 15.75 18 15.75C17.5858 15.75 17.25 15.4142 17.25 15V7.81066L6.53033 18.5303C6.23744 18.8232 5.76256 18.8232 5.46967 18.5303C5.17678 18.2374 5.17678 17.7626 5.46967 17.4697L16.1893 6.75H9Z"
+                                        fill="currentColor"></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <div class="button__spotlight"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="hero-img">
+                <img src="https://cdn.pixabay.com/photo/2016/07/15/17/48/black-and-white-1519815_1280.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="boxed-services-wrapper">
+        <div class="services-text">
+            <h2 data-i18n="services_title">Servicios/</h2>
+            <p>Me especializo en construir aplicaciones web Full Stack rápidas, confiables e intuitivas. Con una base
+                sólida en tecnologías tanto de Frontend como de Backend, ayudo a dar vida a las ideas, ya sea para un
+                negocio, una startup o un equipo de producto.</p>
+        </div>
+        <div class="boxed-container">
+
+            <div class="box-services">
+                <!-- Left Column: Visuals (Cards) -->
+                <div class="sr-visuals">
+                    <div class="sr-card visual-card-1">
+                        <img src="img/service-fullstack.png" alt="Full-Stack Development">
+                    </div>
+                    <div class="sr-card visual-card-2">
+                        <img src="img/service-uiux.png" alt="UI/UX & Frontend">
+                    </div>
+                    <div class="sr-card visual-card-3">
+                        <img src="img/service-optimization.png" alt="Optimization">
+                    </div>
+                </div>
+
+                <!-- Right Column: Texts & Nav -->
+                <div class="sr-texts">
+
+                    <!-- Fixed Mini Nav -->
+                    <nav class="mini-nav">
+                        <ul>
+                            <li class="nav-item-1 active">(01) Full-Stack</li>
+                            <li class="nav-item-2">02 UI/UX</li>
+                            <li class="nav-item-3" data-i18n="nav_optimization">03 Optimización</li>
+                        </ul>
+                    </nav>
+
+                    <!-- Text Slides -->
+                    <div class="sr-text-group">
+
+                        <!-- Slide 01 -->
+                        <div class="sr-text-block text-1">
+                            <h3 class="main-title" data-i18n="srv1_title">DESARROLLO<br>FULL-STACK</h3>
+                            <p class="body-text">Desde las interacciones en el frontend hasta las APIs en el backend,
+                                construyo soluciones web integrales. Trabajo con tecnologías modernas para aplicaciones
+                                escalables.</p>
+                            <ul class="stack-list">
+                                <li>React, Node.js, Express.js</li>
+                                <li>REST APIs, Firebase, Docker</li>
+                                <li>Git, GitHub, Postman, SQL</li>
+                            </ul>
+                        </div>
+
+                        <!-- Slide 02 -->
+                        <div class="sr-text-block text-2">
+                            <h3 class="main-title">UI/UX &<br>FRONTEND</h3>
+                            <p class="body-text">El diseño es más que apariencia: es claridad y conexión. Diseño
+                                interfaces
+                                limpias y responsivas que se sienten intuitivas. Enfoque en accesibilidad y fluidez.</p>
+                            <ul class="stack-list">
+                                <li>Next.js, TailwindCSS, GSAP</li>
+                                <li>De Figma a Código</li>
+                                <li>HTML, CSS, JavaScript</li>
+                            </ul>
+                        </div>
+
+                        <!-- Slide 03 -->
+                        <div class="sr-text-block text-3">
+                            <h3 class="main-title" data-i18n="srv3_title">OPTIMIZACIÓN</h3>
+                            <p class="body-text">Más allá de manejar datos, me motiva transformar entradas complejas en
+                                sistemas confiables. Pipelines que generan valor real y escalabilidad.</p>
+                            <ul class="stack-list">
+                                <li>Estructuras de Datos y Algoritmos</li>
+                                <li>DBMS, POO (OOP)</li>
+                                <li>Pipelines de Datos, ETL</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- Close sr-texts -->
+
+                <!-- Números gigantes — efecto ticker en la esquina -->
+                <div class="giant-number-wrapper">
+                    <div class="giant-number-track">
+                        <div class="giant-number gn-1">01</div>
+                        <div class="giant-number gn-2">02</div>
+                        <div class="giant-number gn-3">03</div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- Close Boxed Container -->
+
+    </section> <!-- Close Services Wrapper -->
+
+    <!-- ======= SELECTED WORKS ======= -->
+    <section class="selected-works">
+        <div class="sw-container">
+
+            <!-- Left Column: Pinned -->
+            <div class="sw-left">
+                <span class="sw-label">TRABAJOS SELECCIONADOS</span>
+                <div class="sw-number-wrapper">
+                    <div class="sw-number-track">
+                        <div class="sw-number">01</div>
+                        <div class="sw-number">02</div>
+                        <div class="sw-number">03</div>
+                        <div class="sw-number">04</div>
+                    </div>
+                </div>
+
+                <!-- Texto de cada proyecto — ticker debajo del número -->
+                <div class="sw-info-wrapper">
+                    <div class="sw-info-track">
+                        <div class="sw-info-slide">
+                            <h3>Render 3D — Malta Maltín Polar</h3>
+                            <p>Modelado, texturizado y renderizado fotorrealista para campaña visual de Malta Maltín
+                                Polar.</p>
+                            <div class="sw-tags">
+                                <span>Blender</span>
+                                <span>Render 3D</span>
+                            </div>
+                        </div>
+                        <div class="sw-info-slide">
+                            <h3>Plataforma B2B E-commerce</h3>
+                            <p>Desarrollo Fullstack de una plataforma de comercio electrónico B2B orientada a la gestión
+                                de inventario y ventas.</p>
+                            <div class="sw-tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                            </div>
+                        </div>
+                        <div class="sw-info-slide">
+                            <h3>App de Delivery (PWA)</h3>
+                            <p>Progressive Web App para la gestión y logística de entregas de botellones de agua a
+                                domicilio.</p>
+                            <div class="sw-tags">
+                                <span>React</span>
+                                <span>PWA</span>
+                                <span>Service Workers</span>
+                            </div>
+                        </div>
+                        <div class="sw-info-slide">
+                            <h3>Sistema ERP en la Nube</h3>
+                            <p>Implementación de un sistema de planificación de recursos empresariales alojado en
+                                servidores Linux.</p>
+                            <div class="sw-tags">
+                                <span>Fullstack</span>
+                                <span>Contabo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Solo imágenes en desktop, imagen + info en mobile -->
+            <div class="sw-right">
+                <div class="sw-card" data-index="0">
+                    <img src="img/project-render3d.png" alt="Render 3D - Malta Maltín Polar">
+                    <div class="sw-mobile-info">
+                        <h3>Render 3D — Malta Maltín Polar</h3>
+                        <p>Modelado, texturizado y renderizado fotorrealista para campaña visual de Malta Maltín Polar.
+                        </p>
+                        <div class="sw-tags">
+                            <span>Blender</span>
+                            <span>Render 3D</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sw-card" data-index="1">
+                    <img src="img/project-ecommerce.png" alt="Plataforma B2B E-commerce">
+                    <div class="sw-mobile-info">
+                        <h3>Plataforma B2B E-commerce</h3>
+                        <p>Desarrollo Fullstack de una plataforma de comercio electrónico B2B orientada a la gestión de
+                            inventario y ventas.</p>
+                        <div class="sw-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sw-card" data-index="2">
+                    <img src="img/project-delivery.png" alt="App de Delivery (PWA)">
+                    <div class="sw-mobile-info">
+                        <h3>App de Delivery (PWA)</h3>
+                        <p>Progressive Web App para la gestión y logística de entregas de botellones de agua a
+                            domicilio.</p>
+                        <div class="sw-tags">
+                            <span>React</span>
+                            <span>PWA</span>
+                            <span>Service Workers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sw-card" data-index="3">
+                    <img src="img/project-erp.png" alt="Sistema ERP en la Nube">
+                    <div class="sw-mobile-info">
+                        <h3>Sistema ERP en la Nube</h3>
+                        <p>Implementación de un sistema de planificación de recursos empresariales alojado en servidores
+                            Linux.</p>
+                        <div class="sw-tags">
+                            <span>Fullstack</span>
+                            <span>Contabo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= ABOUT / SKILLS ======= -->
+    <section class="about-section">
+        <div class="about-container">
+
+            <!-- Left Column -->
+            <div class="about-left">
+                <div class="about-title-sticky">
+                    <h2 class="about-title" data-i18n="about_title">DESARROLLADOR,<br>DISEÑADOR</h2>
+                </div>
+                <div class="about-img-placeholder">
+                    <img src="img/honda-vlx600.png" alt="Honda Shadow VLX 600">
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="about-right">
+                <div class="skills-block">
+                    <h3 class="skills-heading" data-i18n="skills_heading">Habilidades</h3>
+                    <div class="skills-columns">
+                        <div class="skills-col">
+                            <h4 data-i18n="skills_col1">Lenguajes y Herramientas</h4>
+                            <ul class="skills-list" id="skills-list-1">
+                                <li data-scramble>JavaScript</li>
+                                <li data-scramble>HTML</li>
+                                <li data-scramble>CSS</li>
+                                <li data-scramble>Node.js</li>
+                                <li data-scramble>MySQL</li>
+                                <li data-scramble>SQLite</li>
+                                <li data-scramble>MongoDB</li>
+                                <li data-scramble>Git</li>
+                                <li data-scramble>GitHub</li>
+                                <li data-scramble>VScode</li>
+                            </ul>
+                        </div>
+                        <div class="skills-col">
+                            <h4 data-i18n="skills_col2">Frameworks y Librerías</h4>
+                            <ul class="skills-list" id="skills-list-2">
+                                <li data-scramble>React</li>
+                                <li data-scramble>Angular</li>
+                                <li data-scramble>Bootstrap</li>
+                                <li data-scramble>Tailwind</li>
+                                <li data-scramble>Express</li>
+                                <li data-scramble>Sequelize</li>
+                                <li data-scramble>Framer Motion</li>
+                                <li data-scramble>GSAP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-description">
+                    <p>Soy un desarrollador Full-Stack con formación en Ingeniería de Sistemas y un fuerte enfoque en
+                        Frontend. No solo construyo sitios web; diseño experiencias interactivas donde la lógica
+                        compleja se encuentra con un diseño intencional. Mi enfoque se basa en la creencia de que las
+                        animaciones deben tener sentido: guiar a los usuarios en lugar de solo decorar. Ya sea
+                        estructurando una arquitectura robusta o puliendo una micro-interacción, mi objetivo es crear
+                        productos digitales que sean tan funcionales como estéticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= CONTACT ======= -->
+    <section class="contact-section">
+        <div class="contact-card">
+            <div class="contact-left">
+                <h2 class="contact-title" data-i18n="contact_title">Contacto</h2>
+            </div>
+            <div class="contact-right">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="full-name" data-i18n="form_name">Nombre Completo</label>
+                        <input type="text" id="full-name" placeholder="Ingresa tu nombre completo"
+                            data-i18n-ph="ph_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="form_email">Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-i18n="form_phone">Teléfono</label>
+                        <input type="tel" id="phone" placeholder="+58 412 000 0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type" data-i18n="form_project">Tipo de Proyecto</label>
+                        <select id="project-type">
+                            <option value="" disabled selected data-i18n="opt_select">Selecciona un tipo de proyecto
+                            </option>
+                            <option value="landing">Página de Aterrizaje (Landing Page)</option>
+                            <option value="corporativa">Página Web Corporativa</option>
+                            <option value="ecommerce">Tienda en Línea (E-commerce)</option>
+                            <option value="portfolio">Portafolio / Página Personal</option>
+                            <option value="blog">Blog / Revista Digital</option>
+                            <option value="webapp">Aplicación Web (SaaS / Dashboard)</option>
+                            <option value="pwa">Aplicación Web Progresiva (PWA)</option>
+                            <option value="mobile">Aplicación Móvil</option>
+                            <option value="cms">Sistema de Gestión de Contenido (CMS)</option>
+                            <option value="erp">Sistema ERP / CRM</option>
+                            <option value="api">API / Backend</option>
+                            <option value="uiux">Diseño UI/UX</option>
+                            <option value="3d">Modelado 3D / Render</option>
+                            <option value="seo">Optimización SEO</option>
+                            <option value="maintenance">Mantenimiento Web</option>
+                            <option value="other">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget" data-i18n="form_budget">Presupuesto Estimado</label>
+                        <select id="budget">
+                            <option value="" disabled selected data-i18n="opt_budget">Selecciona un rango</option>
+                            <option value="50-200">$50 — $200</option>
+                            <option value="200-500">$200 — $500</option>
+                            <option value="500-1000">$500 — $1,000</option>
+                            <option value="1000-3000">$1,000 — $3,000</option>
+                            <option value="3000+">$3,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message">Mensaje</label>
+                        <input type="text" id="message" placeholder="Escribe tu mensaje" data-i18n-ph="ph_message">
+                    </div>
+                    <button type="submit" class="contact-btn" data-i18n="form_send">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= FOOTER ======= -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="footer-logo">ertweb</span>
+                <p class="footer-tagline" data-i18n="footer_tagline">Diseño que piensa. Código que siente.</p>
+            </div>
+            <nav class="footer-nav">
+                <h4 data-i18n="footer_nav_title">Navegación</h4>
+                <ul>
+                    <li><a href="#" data-i18n="nav_work">Trabajos</a></li>
+                    <li><a href="#" data-i18n="nav_about">Sobre mí</a></li>
+                    <li><a href="#" data-i18n="nav_contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="footer-social">
+                <h4 data-i18n="footer_social_title">Redes Sociales</h4>
+                <ul>
+                    <li><a href="#" target="_blank">Instagram</a></li>
+                    <li><a href="#" target="_blank">Twitter / X</a></li>
+                    <li><a href="#" target="_blank">TikTok</a></li>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact-info">
+                <h4 data-i18n="footer_contact_title">Contacto</h4>
+                <p>ertweb@gmail.com</p>
+                <p>Caracas, Venezuela</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 ertweb. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
+            </p>
+            <p class="footer-crafted" data-i18n="footer_crafted">Hecho con código y café ☕</p>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de idioma -->
+    <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+        <span id="langLabel">EN</span>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
