@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErtWeb - Contacto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Ajustes menores para que la sección cubra toda la pantalla en este nuevo archivo */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #ebebeb;
+        }
+
+        .contact-section {
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= CONTACT ======= -->
+    <section class="contact-section">
+        <div class="contact-card">
+            <div class="contact-left">
+                <h2 class="contact-title" data-i18n="contact_title">Hablemos</h2>
+                <p style="color: #999; margin-top: 1rem; font-size: 1.1rem; line-height: 1.6; max-width: 300px;">
+                    ¿Vienes de Instagram? Déjame tus detalles de contacto y cuéntame un poco de tu idea. Me pondré en
+                    contacto contigo lo antes posible para empezar a trabajar juntos.
+                </p>
+            </div>
+            <div class="contact-right">
+                <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true">
+                    <!-- Input oculto requerido por Netlify para formularios AJAX -->
+                    <input type="hidden" name="form-name" value="contact">
+                    <input type="hidden" name="source" value="Instagram">
+
+                    <div class="form-group">
+                        <label for="full-name" data-i18n="form_name">Nombre Completo</label>
+                        <input type="text" id="full-name" name="user_name" placeholder="Ingresa tu nombre completo"
+                            data-i18n-ph="ph_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="form_email">Correo Electrónico</label>
+                        <input type="email" id="email" name="user_email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-i18n="form_phone">Teléfono</label>
+                        <input type="tel" id="phone" name="user_phone" placeholder="+58 412 000 0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type" data-i18n="form_project">Tipo de Proyecto</label>
+                        <select id="project-type" name="project_type">
+                            <option value="" disabled selected data-i18n="opt_select">Selecciona un tipo de proyecto
+                            </option>
+                            <option value="landing">Página de Aterrizaje (Landing Page)</option>
+                            <option value="corporativa">Página Web Corporativa</option>
+                            <option value="ecommerce">Tienda en Línea (E-commerce)</option>
+                            <option value="portfolio">Portafolio / Página Personal</option>
+                            <option value="blog">Blog / Revista Digital</option>
+                            <option value="webapp">Aplicación Web (SaaS / Dashboard)</option>
+                            <option value="pwa">Aplicación Web Progresiva (PWA)</option>
+                            <option value="mobile">Aplicación Móvil</option>
+                            <option value="cms">Sistema de Gestión de Contenido (CMS)</option>
+                            <option value="erp">Sistema ERP / CRM</option>
+                            <option value="api">API / Backend</option>
+                            <option value="uiux">Diseño UI/UX</option>
+                            <option value="3d">Modelado 3D / Render</option>
+                            <option value="seo">Optimización SEO</option>
+                            <option value="maintenance">Mantenimiento Web</option>
+                            <option value="other">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget" data-i18n="form_budget">Presupuesto Estimado</label>
+                        <select id="budget" name="budget">
+                            <option value="" disabled selected data-i18n="opt_budget">Selecciona un rango</option>
+                            <option value="50-200">$50 — $200</option>
+                            <option value="200-500">$200 — $500</option>
+                            <option value="500-1000">$500 — $1,000</option>
+                            <option value="1000-3000">$1,000 — $3,000</option>
+                            <option value="3000+">$3,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message">Mensaje</label>
+                        <textarea id="message" name="message" placeholder="Escribe tu mensaje" data-i18n-ph="ph_message"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="contact-btn" data-i18n="form_send">Enviar Mensaje</button>
+                    <a href="index.html"
+                        style="display: block; text-align: center; margin-top: 1rem; color: #aaa; text-decoration: none; font-size: 0.9rem;">Volver
+                        a la página principal</a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script standalone solo para el formulario de contacto -->
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const contactBtn = document.querySelector('.contact-btn');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const originalBtnText = contactBtn.textContent;
+                contactBtn.textContent = 'Enviando...';
+                contactBtn.disabled = true;
+
+                const formData = new FormData(contactForm);
+
+                fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                })
+                    .then(() => {
+                        contactBtn.textContent = '¡Mensaje Enviado!';
+                        contactBtn.style.backgroundColor = '#4CAF50';
+                        contactForm.reset();
+
+                        setTimeout(() => {
+                            contactBtn.textContent = originalBtnText;
+                            contactBtn.style.backgroundColor = '';
+                            contactBtn.disabled = false;
+                        }, 4000);
+                    })
+                    .catch((error) => {
+                        console.error("FAILED...", error);
+                        contactBtn.textContent = 'Error al Enviar';
+                        contactBtn.style.backgroundColor = '#f44336';
+
+                        setTimeout(() => {
+                            contactBtn.textContent = originalBtnText;
+                            contactBtn.style.backgroundColor = '';
+                            contactBtn.disabled = false;
+                        }, 4000);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

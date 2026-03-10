@@ -1,5 +1,8 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// Desactivar scroll al cargar
+document.body.classList.add('no-scroll');
+
 const loaderContainer = document.getElementById('loader-container');
 const contenedorLogos = document.querySelector('.contenedor-logos');
 
@@ -58,6 +61,9 @@ gsap.set('.button', { opacity: 0, y: 30 });
 
 const tlLoader = gsap.timeline({
   onComplete: () => {
+    // Permitir scroll removiendo clase del body
+    document.body.classList.remove('no-scroll');
+
     // Bajar z-index del loader para que no bloquee interacciones
     loaderContainer.classList.add('done');
     loaderContainer.style.pointerEvents = 'none';
@@ -67,7 +73,7 @@ const tlLoader = gsap.timeline({
       loaderContainer.parentElement.style.zIndex = '1';
     }
     // Mostrar el header y el hero cuando termina la animación inicial
-    document.querySelector('.menu-overlay').classList.add('visible');
+    document.querySelector('.main-header').classList.add('visible');
     gsap.to('.hero', {
       opacity: 1, duration: 0.2, ease: 'power2.out',
       onComplete: () => {
@@ -102,6 +108,8 @@ function splitText(el) {
 
 function animateWords(container, delay = 0) {
   const words = container.querySelectorAll('.word-inner');
+  if (!words || words.length === 0) return;
+
   gsap.to(words, {
     y: 0,
     duration: 0.4,
@@ -301,6 +309,9 @@ function applyCornerState() {
 
   // Mostrar el clon fijo
   fixedLogoContainer.style.opacity = '1';
+
+  // Mostrar botón de hamburguesa
+  gsap.to('#burger', { opacity: 1, autoAlpha: 1, duration: 0.3 });
 }
 
 function removeCornerState() {
@@ -309,6 +320,14 @@ function removeCornerState() {
 
   // Ocultar el clon fijo
   fixedLogoContainer.style.opacity = '0';
+
+  // Ocultar botón de hamburguesa
+  gsap.to('#burger', { opacity: 0, autoAlpha: 0, duration: 0.3 });
+
+  // Cerrar menú si estaba abierto
+  if (typeof tlBurger !== 'undefined' && tlBurger.progress() > 0) {
+    tlBurger.reverse();
+  }
 }
 
 // =============================================
@@ -350,10 +369,10 @@ function initServicesPanelWipe() {
   // Solo animar si existen los elementos
   if (cards.length < 3 || textBlocks.length < 3) return;
 
-  // Usar matchMedia para que el scrolljacking SOLO ocurra en Desktop
+  // Usar matchMedia para aplicar en todos los tamaños
   let mm = gsap.matchMedia();
 
-  mm.add("(min-width: 1025px)", () => {
+  mm.add("all", () => {
     // ---- Estado inicial via GSAP (evita conflictos con CSS transforms) ----
     gsap.set('.visual-card-2', { yPercent: 100 });
     gsap.set('.visual-card-3', { yPercent: 100 });
@@ -644,7 +663,7 @@ function initAboutAnimations() {
 initAboutAnimations();
 
 // =============================================
-// 9. CONTACT — Entrance Animation
+// 9. CONTACT — Entrance Animation & Form Submit
 // =============================================
 
 function initContactAnimation() {
@@ -652,8 +671,50 @@ function initContactAnimation() {
   const contactTitle = document.querySelector('.contact-title');
   const formGroups = document.querySelectorAll('.form-group');
   const contactBtn = document.querySelector('.contact-btn');
+  const contactForm = document.getElementById('contact-form');
 
   if (!card) return;
+
+  // -- Netlify Forms AJAX Submission Logic --
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const originalBtnText = contactBtn.textContent;
+      contactBtn.textContent = 'Enviando...';
+      contactBtn.disabled = true;
+
+      const formData = new FormData(contactForm);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then(() => {
+          contactBtn.textContent = '¡Mensaje Enviado!';
+          contactBtn.style.backgroundColor = '#4CAF50';
+          contactForm.reset();
+
+          setTimeout(() => {
+            contactBtn.textContent = originalBtnText;
+            contactBtn.style.backgroundColor = '';
+            contactBtn.disabled = false;
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error("FAILED...", error);
+          contactBtn.textContent = 'Error al Enviar';
+          contactBtn.style.backgroundColor = '#f44336';
+
+          setTimeout(() => {
+            contactBtn.textContent = originalBtnText;
+            contactBtn.style.backgroundColor = '';
+            contactBtn.disabled = false;
+          }, 3000);
+        });
+    });
+  }
 
   // Card sube desde abajo
   gsap.set(card, { opacity: 0, y: 80 });
@@ -783,6 +844,11 @@ function applyLanguage(lang) {
       } else {
         el.textContent = t[key];
       }
+
+      // Si la carga inicial no ha pasado o estamos en un nav/hero, re-separar para GSAP
+      if (el.matches('.menu-content p, .menu-content a, #hero-paragraph')) {
+        splitText(el);
+      }
     }
   });
   // Placeholders
@@ -803,3 +869,88 @@ document.getElementById('langToggle').addEventListener('click', () => {
 
 // Aplicar idioma guardado al cargar
 applyLanguage(currentLang);
+
+// =============================================
+// 11. BURGER MENU
+// =============================================
+const burger = document.querySelector('#burger');
+const tlBurger = gsap.timeline({ paused: true });
+
+gsap.set('.burger-overlay', { autoAlpha: 0 });
+
+tlBurger.to('.burger-overlay', { autoAlpha: 1, duration: 0.3 })
+  .to('.burger-content', { x: '0%', duration: 0.5, ease: 'power3.out' }, '<')
+  .to('.burger-link', { yPercent: 0, translateY: 0, duration: 0.4, stagger: 0.1, ease: 'power2.out' }, '-=0.2');
+
+burger.addEventListener('click', () => {
+  if (tlBurger.reversed() || tlBurger.progress() === 0) {
+    tlBurger.play();
+  } else {
+    tlBurger.reverse();
+  }
+});
+
+// Cerrar el menú hamburguesa cuando se hace clic en cualquier link interno
+const burgerLinks = document.querySelectorAll('.burger-link');
+burgerLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    tlBurger.reverse();
+  });
+});
+
+// =============================================
+// 12. CUSTOM SCROLL PROGRESS BAR
+// =============================================
+gsap.to('.custom-scrollbar-thumb', {
+  height: '100%',
+  ease: 'none',
+  scrollTrigger: {
+    trigger: document.body,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: true
+  }
+});
+
+// =============================================
+// 13. GLOBAL CURSOR PARA SELECTED WORKS
+// =============================================
+function initSWCursor() {
+  const cursor = document.getElementById('sw-global-cursor');
+  const links = document.querySelectorAll('.sw-card-link');
+
+  if (!cursor || links.length === 0) return;
+
+  // Movimiento fluido del cursor persiguiendo el raton
+  const xTo = gsap.quickTo(cursor, "x", { duration: 0.2, ease: "power3" }),
+    yTo = gsap.quickTo(cursor, "y", { duration: 0.2, ease: "power3" });
+
+  window.addEventListener("mousemove", e => {
+    // Offset de 50px porque nuestro cursor tiene 100px por 100px, centrandolo
+    xTo(e.clientX - 50);
+    yTo(e.clientY - 50);
+  });
+
+  // Animaciones Hover
+  links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      gsap.to(cursor, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.4,
+        ease: "back.out(1.5)"
+      });
+    });
+
+    link.addEventListener('mouseleave', () => {
+      gsap.to(cursor, {
+        opacity: 0,
+        scale: 0.1,
+        duration: 0.3,
+        ease: "power2.in"
+      });
+    });
+  });
+}
+
+initSWCursor();
