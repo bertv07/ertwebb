@@ -1432,10 +1432,23 @@ a.button:hover .button__text {
   /* Hero */
   .hero {
     min-height: 100svh;
+    height: auto;
+    z-index: auto;
+    /* Remove the hardcoded z-index that broke the scroll pinning */
   }
 
   .hero-bottom {
     padding: 1.5rem;
+    padding-bottom: 2rem;
+    flex-direction: column-reverse;
+    /* Image top, text bottom */
+    gap: 1.5rem;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 5;
+    /* Ensures the text and button are above the image bounding box */
   }
 
   .hero-img {
