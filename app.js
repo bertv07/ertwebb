@@ -686,12 +686,27 @@ function initContactAnimation() {
 
       const formData = new FormData(contactForm);
 
-      fetch('/', {
+      // --- 1. Enviar a Netlify (Respaldo en Dashboard) ---
+      const sendToNetlify = fetch('/', {
         method: 'POST',
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString()
-      })
-        .then(() => {
+      }).catch(err => console.warn("Falló envío a Netlify", err));
+
+      // --- 2. Enviar a tu Correo vía Web3Forms ---
+      const formObject = Object.fromEntries(formData);
+      const sendToWeb3Forms = fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formObject)
+      });
+
+      // Ejecutar ambos métodos a la vez
+      Promise.all([sendToNetlify, sendToWeb3Forms])
+        .then(async (responses) => {
           contactBtn.textContent = '¡Mensaje Enviado!';
           contactBtn.style.backgroundColor = '#4CAF50';
           contactForm.reset();

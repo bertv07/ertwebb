@@ -46,6 +46,10 @@
                 <form class="contact-form" id="contact-form" name="contacto_web" method="POST" data-netlify="true">
                     <!-- Input oculto requerido por Netlify para formularios AJAX -->
                     <input type="hidden" name="form-name" value="contacto_web">
+                    <!-- Configuración para Web3Forms (envío directo a tu correo) -->
+                    <input type="hidden" name="access_key" value="4298a0af-7060-466c-af99-b84d72d6c4e5">
+                    <!-- Asunto del correo cuando llega a tu buzón -->
+                    <input type="hidden" name="subject" value="Nuevo Mensaje de Contacto - ErtWeb">
                     <input type="hidden" name="source" value="Instagram">
 
                     <div class="form-group">
@@ -124,12 +128,28 @@
 
                 const formData = new FormData(contactForm);
 
-                fetch('/', {
+                // --- 1. Enviar a Netlify (Respaldo en Dashboard) ---
+                const sendToNetlify = fetch('/', {
                     method: 'POST',
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: new URLSearchParams(formData).toString()
-                })
-                    .then(() => {
+                }).catch(err => console.warn("Falló envío a Netlify", err));
+
+                // --- 2. Enviar a tu Correo vía Web3Forms ---
+                const formObject = Object.fromEntries(formData);
+                const sendToWeb3Forms = fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                });
+
+                // Ejecutarlos simultáneamente
+                Promise.all([sendToNetlify, sendToWeb3Forms])
+                    .then(async (responses) => {
+                        // Ocurrió sin rechazo de red, asumimos éxito
                         contactBtn.textContent = '¡Mensaje Enviado!';
                         contactBtn.style.backgroundColor = '#4CAF50';
                         contactForm.reset();
