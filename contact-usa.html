@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WJMH38QW');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ErtWeb - Contact</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Adjustments for the contact page to cover the full screen */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #ebebeb;
+        }
+
+        .contact-section {
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJMH38QW"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- ======= CONTACT ======= -->
+    <section class="contact-section">
+        <div class="contact-card">
+            <div class="contact-left">
+                <h2 class="contact-title">Let's Talk</h2>
+                <p style="color: #999; margin-top: 1rem; font-size: 1.1rem; line-height: 1.6; max-width: 300px;">
+                    Got a project in mind? Drop your details and tell me a bit about your idea. I'll get back to you
+                    as soon as possible so we can start working together.
+                </p>
+            </div>
+            <div class="contact-right">
+                <form class="contact-form" id="contact-form" name="contacto_usa" method="POST" data-netlify="true">
+                    <!-- Hidden input required by Netlify for AJAX forms -->
+                    <input type="hidden" name="form-name" value="contacto_usa">
+                    <!-- Web3Forms configuration (direct email delivery) -->
+                    <input type="hidden" name="access_key" value="4298a0af-7060-466c-af99-b84d72d6c4e5">
+                    <!-- Email subject line -->
+                    <input type="hidden" name="subject" value="New Contact Message - ErtWeb (USA)">
+                    <input type="hidden" name="source" value="USA Landing">
+
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="user_name" placeholder="Enter your full name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="user_email" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="user_phone" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type">Project Type</label>
+                        <select id="project-type" name="project_type">
+                            <option value="" disabled selected>Select a project type</option>
+                            <option value="landing">Landing Page</option>
+                            <option value="corporativa">Corporate Website</option>
+                            <option value="ecommerce">Online Store (E-commerce)</option>
+                            <option value="portfolio">Portfolio / Personal Website</option>
+                            <option value="blog">Blog / Digital Magazine</option>
+                            <option value="webapp">Web Application (SaaS / Dashboard)</option>
+                            <option value="pwa">Progressive Web App (PWA)</option>
+                            <option value="mobile">Mobile Application</option>
+                            <option value="cms">Content Management System (CMS)</option>
+                            <option value="erp">ERP / CRM System</option>
+                            <option value="api">API / Backend</option>
+                            <option value="uiux">UI/UX Design</option>
+                            <option value="3d">3D Modeling / Render</option>
+                            <option value="seo">SEO Optimization</option>
+                            <option value="maintenance">Web Maintenance</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Estimated Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="" disabled selected>Select a range</option>
+                            <option value="500-1000">$500 — $1,000</option>
+                            <option value="1000-3000">$1,000 — $3,000</option>
+                            <option value="3000-5000">$3,000 — $5,000</option>
+                            <option value="5000-10000">$5,000 — $10,000</option>
+                            <option value="10000+">$10,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Write your message"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="contact-btn">Send Message</button>
+                    <a href="index.html"
+                        style="display: block; text-align: center; margin-top: 1rem; color: #aaa; text-decoration: none; font-size: 0.9rem;">Back
+                        to homepage</a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Standalone script for the contact form -->
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const contactBtn = document.querySelector('.contact-btn');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const originalBtnText = contactBtn.textContent;
+                contactBtn.textContent = 'Sending...';
+                contactBtn.disabled = true;
+
+                const formData = new FormData(contactForm);
+
+                // --- 1. Send to Netlify (Dashboard backup) ---
+                const sendToNetlify = fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                }).catch(err => console.warn("Netlify submission failed", err));
+
+                // --- 2. Send to your Email via Web3Forms ---
+                const formObject = Object.fromEntries(formData);
+                const sendToWeb3Forms = fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                });
+
+                // Execute both simultaneously
+                Promise.all([sendToNetlify, sendToWeb3Forms])
+                    .then(async (responses) => {
+                        contactBtn.textContent = 'Message Sent!';
+                        contactBtn.style.backgroundColor = '#4CAF50';
+                        contactForm.reset();
+
+                        setTimeout(() => {
+                            contactBtn.textContent = originalBtnText;
+                            contactBtn.style.backgroundColor = '';
+                            contactBtn.disabled = false;
+                        }, 4000);
+                    })
+                    .catch((error) => {
+                        console.error("FAILED...", error);
+                        contactBtn.textContent = 'Failed to Send';
+                        contactBtn.style.backgroundColor = '#f44336';
+
+                        setTimeout(() => {
+                            contactBtn.textContent = originalBtnText;
+                            contactBtn.style.backgroundColor = '';
+                            contactBtn.disabled = false;
+                        }, 4000);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
