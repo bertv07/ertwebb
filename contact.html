@@ -58,8 +58,6 @@
                     <input type="hidden" name="form-name" value="contacto_web">
                     <!-- Configuración para Web3Forms (envío directo a tu correo) -->
                     <input type="hidden" name="access_key" value="4298a0af-7060-466c-af99-b84d72d6c4e5">
-                    <!-- Webhook para automatización en n8n -->
-                    <input type="hidden" name="webhook" value="http://localhost:5678/webhook-test/contacto-ertweb">
                     <!-- Asunto del correo cuando llega a tu buzón -->
                     <input type="hidden" name="subject" value="Nuevo Mensaje de Contacto - ErtWeb">
                     <input type="hidden" name="source" value="Instagram">
@@ -158,8 +156,18 @@
                     body: JSON.stringify(formObject)
                 });
 
+                // --- 3. Enviar a n8n ---
+                const sendToN8n = fetch('http://localhost:5678/webhook-test/contacto-ertweb', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                }).catch(err => console.warn("Falló envío a n8n", err));
+
                 // Ejecutarlos simultáneamente
-                Promise.all([sendToNetlify, sendToWeb3Forms])
+                Promise.all([sendToNetlify, sendToWeb3Forms, sendToN8n])
                     .then(async (responses) => {
                         // Ocurrió sin rechazo de red, asumimos éxito
                         contactBtn.textContent = '¡Mensaje Enviado!';

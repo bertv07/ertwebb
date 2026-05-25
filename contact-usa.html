@@ -59,8 +59,6 @@
                     <input type="hidden" name="form-name" value="contacto_usa">
                     <!-- Web3Forms configuration (direct email delivery) -->
                     <input type="hidden" name="access_key" value="4298a0af-7060-466c-af99-b84d72d6c4e5">
-                    <!-- Webhook para automatización en n8n -->
-                    <input type="hidden" name="webhook" value="http://localhost:5678/webhook-test/contacto-ertweb">
                     <!-- Email subject line -->
                     <input type="hidden" name="subject" value="New Contact Message - ErtWeb (USA)">
                     <input type="hidden" name="source" value="USA Landing">
@@ -158,8 +156,18 @@
                     body: JSON.stringify(formObject)
                 });
 
-                // Execute both simultaneously
-                Promise.all([sendToNetlify, sendToWeb3Forms])
+                // --- 3. Send to n8n Webhook ---
+                const sendToN8n = fetch('http://localhost:5678/webhook-test/contacto-ertweb', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                }).catch(err => console.warn("Falló envío a n8n", err));
+
+                // Execute all simultaneously
+                Promise.all([sendToNetlify, sendToWeb3Forms, sendToN8n])
                     .then(async (responses) => {
                         contactBtn.textContent = 'Message Sent!';
                         contactBtn.style.backgroundColor = '#4CAF50';

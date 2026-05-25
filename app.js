@@ -704,8 +704,18 @@ function initContactAnimation() {
         body: JSON.stringify(formObject)
       });
 
+      // --- 3. Enviar a n8n ---
+      const sendToN8n = fetch('http://localhost:5678/webhook-test/contacto-ertweb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formObject)
+      }).catch(err => console.warn("Falló envío a n8n", err));
+
       // Ejecutar ambos métodos a la vez
-      Promise.all([sendToNetlify, sendToWeb3Forms])
+      Promise.all([sendToNetlify, sendToWeb3Forms, sendToN8n])
         .then(async (responses) => {
           contactBtn.textContent = '¡Mensaje Enviado!';
           contactBtn.style.backgroundColor = '#4CAF50';
