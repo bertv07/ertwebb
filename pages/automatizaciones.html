@@ -568,6 +568,93 @@
         display: none;
       }
     }
+
+    /* ===== RESPONSIVE HERO (tablet / móvil) ===== */
+    @media (max-width: 1024px) {
+      .hero {
+        min-height: auto;
+        padding: 7rem 1.5rem 3rem;
+      }
+
+      /* Neutraliza los offsets de escritorio y apila todo centrado */
+      .hero-container {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero h2 {
+        left: 0;
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .hero p {
+        left: 0;
+        text-align: center;
+        font-size: 1.1rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        left: 0;
+        justify-content: center;
+      }
+
+      /* Las stats dejan de estar absolutas y pasan a fila debajo del texto */
+      .hero-stats {
+        position: static;
+        left: auto;
+        top: auto;
+        margin-top: 3rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem 2.5rem;
+      }
+
+      /* Quita el solape provocado por los márgenes negativos de escritorio */
+      #servicios {
+        margin-top: 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 6.5rem 1.25rem 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .hero-actions {
+        margin-top: 2rem;
+        width: 100%;
+      }
+
+      .hero-actions .btn-primary,
+      .hero-actions .btn-outline {
+        flex: 1 1 40%;
+        text-align: center;
+      }
+
+      .stat-item .num {
+        font-size: 2rem;
+      }
+
+      .cta-section {
+        padding: 4rem 1.5rem;
+      }
+    }
   </style>
 </head>
 

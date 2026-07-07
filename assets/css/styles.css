@@ -1696,35 +1696,16 @@ a.button:hover .button__text {
     text-align: center;
   }
 
-  /* Menu overlay */
+  /* Menu overlay — en móvil ocultamos el nav de escritorio (los links
+     viven en el overlay de la hamburguesa) y mostramos siempre el burger */
   .menu-content {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    gap: 1rem;
-  }
-
-  .menu-left-center,
-  .social,
-  .menu-right {
     display: none;
   }
 
-  .menu-list {
-    display: flex;
-    gap: 1.2rem;
-    padding: 0;
-    margin: 0;
+  #burger {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
-
-  .menu-list li a {
-    font-size: 0.8rem;
-  }
-
-  /* Ocultar elementos sobrantes en teléfonos pequeños si es necesario */
 }
 
 /* ===========================================
