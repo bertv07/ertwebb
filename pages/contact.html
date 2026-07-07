@@ -12,16 +12,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ErtWeb - Contacto</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/site-nav.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <style>
         /* Ajustes menores para que la sección cubra toda la pantalla en este nuevo archivo */
         body {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             padding: 0;
             margin: 0;
             min-height: 100vh;
@@ -29,11 +29,15 @@
         }
 
         .contact-section {
+            flex: 1;
             width: 100%;
-            padding: 2rem;
+            padding: 8rem 2rem 2rem;
             display: flex;
+            align-items: center;
             justify-content: center;
         }
+
+
     </style>
 </head>
 
@@ -42,6 +46,46 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJMH38QW"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-logo"><img src="../assets/img/logo-mark.png" alt="ertweb" class="nav-logo-img"></a>
+        <ul class="site-nav-links">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="automatizaciones.html">Automatizaciones</a></li>
+            <li><a href="casos-de-estudio.html">Casos de estudio</a></li>
+            <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+            <li><a href="portal-clientes.html">Portal clientes</a></li>
+            <li><a href="contact.html" class="active">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <button id="burger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+    </button>
+
+    <div class="burger-overlay">
+        <div class="burger-content">
+            <ul class="burger-list">
+                <li><div class="burger-link-wrapper"><a href="../index.html" class="burger-link">Inicio</a></div></li>
+                <li><div class="burger-link-wrapper"><a href="automatizaciones.html" class="burger-link">Automatizaciones</a></div></li>
+                <li><div class="burger-link-wrapper"><a href="casos-de-estudio.html" class="burger-link">Casos de estudio</a></div></li>
+                <li><div class="burger-link-wrapper"><a href="experiencia-3d.html" class="burger-link">Experiencia 3D</a></div></li>
+                <li><div class="burger-link-wrapper"><a href="portal-clientes.html" class="burger-link">Portal clientes</a></div></li>
+                <li><div class="burger-link-wrapper"><a href="contact.html" class="burger-link">Contacto</a></div></li>
+            </ul>
+            <div class="burger-footer">
+                <span>Redes Sociales</span>
+                <div class="burger-social-links">
+                    <a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">instagram</a>
+                    <a href="https://x.com/ertWeb" target="_blank">twitter</a>
+                    <a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">tiktok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ======= CONTACT ======= -->
     <section class="contact-section">
         <div class="contact-card">
@@ -115,13 +159,53 @@
                             required></textarea>
                     </div>
                     <button type="submit" class="contact-btn" data-i18n="form_send">Enviar Mensaje</button>
-                    <a href="index.html"
+                    <a href="../index.html"
                         style="display: block; text-align: center; margin-top: 1rem; color: #aaa; text-decoration: none; font-size: 0.9rem;">Volver
                         a la página principal</a>
                 </form>
             </div>
         </div>
     </section>
+
+    <footer class="site-footer flat-top">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="footer-logo">ertweb</span>
+                <p class="footer-tagline">Diseño que piensa. Código que siente.</p>
+            </div>
+            <div class="footer-nav">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="automatizaciones.html">Automatizaciones</a></li>
+                    <li><a href="casos-de-estudio.html">Casos de estudio</a></li>
+                    <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+                    <li><a href="portal-clientes.html">Portal clientes</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Redes Sociales</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank">Instagram</a></li>
+                    <li><a href="https://x.com/ertWeb" target="_blank">Twitter / X</a></li>
+                    <li><a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc"
+                            target="_blank">TikTok</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact-info">
+                <h4>Contacto</h4>
+                <p>ertweb@gmail.com</p>
+                <p>Caracas, Venezuela</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 ertweb. Todos los derechos reservados.</p>
+            <p class="footer-crafted">Hecho con código y café ☕</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site-nav.js"></script>
 
     <!-- Script standalone solo para el formulario de contacto -->
     <script>
@@ -157,7 +241,7 @@
                 });
 
                 // --- 3. Enviar a n8n ---
-                const sendToN8n = fetch('http://localhost:5678/webhook-test/contacto-ertweb', {
+                const sendToN8n = fetch('https://n8n-n8n.lm6kjk.easypanel.host/webhook/contacto-ertweb', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

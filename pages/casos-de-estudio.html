@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casos de Estudio | ertweb</title>
+<meta name="description" content="Proyectos reales desarrollados por ertweb: experiencias 3D, landing pages, sistemas POS y automatizaciones.">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/site-nav.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#ebebeb;--surface:#ffffff;--border:rgba(0,0,0,0.08);--accent:#57286d;--accent2:#7b3f96;--accent3:#57286d;--text:#1a1a1a;--muted:#666}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+/* HERO */
+.hero{padding:10rem 3rem 5rem;max-width:1200px;margin:0 auto}
+.hero-label{font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:1.2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;letter-spacing:-0.03em;color:var(--text);max-width:800px;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-meta{display:flex;gap:3rem;flex-wrap:wrap}
+.hero-meta .m{color:var(--muted);font-size:0.85rem}.hero-meta .m strong{display:block;font-size:1.4rem;font-weight:900;color:var(--text);margin-bottom:0.2rem}
+
+/* FILTER */
+.filter-bar{max-width:1200px;margin:0 auto;padding:0 3rem 3rem;display:flex;gap:0.7rem;flex-wrap:wrap}
+.filter-btn{padding:0.5rem 1.2rem;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;letter-spacing:0.05em;text-transform:uppercase}
+.filter-btn:hover{border-color:rgba(0,0,0,0.25);color:var(--text)}
+.filter-btn.active{background:var(--accent);border-color:transparent;color:#fff}
+
+/* CASES GRID */
+.cases-grid{max-width:1200px;margin:0 auto;padding:0 3rem 6rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+
+.case-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;overflow:hidden;cursor:pointer;transition:all 0.3s;position:relative}
+.case-card:hover{border-color:rgba(87,40,109,0.35);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.12)}
+.case-card.featured{grid-column:span 2}
+
+.case-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.5s}
+.case-card:hover .case-img{transform:scale(1.04)}
+.case-img-placeholder{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:4rem;background:rgba(87,40,109,0.08)}
+
+.case-body{padding:1.8rem}
+.case-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.case-tag{font-size:0.7rem;font-weight:700;padding:0.25rem 0.7rem;border-radius:50px;border:1px solid rgba(87,40,109,0.3);color:var(--accent)}
+.case-cat{font-size:0.7rem;font-weight:700;padding:0.25rem 0.7rem;border-radius:50px;background:rgba(87,40,109,0.12);color:var(--accent)}
+
+.case-body h3{font-size:1.15rem;font-weight:900;color:var(--text);line-height:1.3;margin-bottom:0.7rem}
+.case-body p{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.3rem}
+
+.case-results{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:1.2rem;border-top:1px solid var(--border)}
+.result-stat .r-num{font-size:1.2rem;font-weight:900;color:var(--accent)}
+.result-stat .r-label{font-size:0.7rem;color:var(--muted);margin-top:0.1rem}
+
+.case-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text);font-size:0.8rem;font-weight:700;text-decoration:none;padding:0.55rem 1.2rem;border-radius:50px;border:1px solid rgba(0,0,0,0.15);transition:all 0.2s;margin-top:1rem}
+.case-link:hover{background:rgba(87,40,109,0.08);border-color:var(--accent)}
+
+/* TESTIMONIAL */
+.testimonial-section{background:#ffffff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 3rem;text-align:center}
+.testimonial-section blockquote{font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:700;color:var(--text);line-height:1.5;max-width:700px;margin:0 auto 1.5rem;font-style:italic}
+.testimonial-section cite{color:var(--muted);font-size:0.85rem;font-style:normal}
+
+/* CTA */
+.cta-section{text-align:center;padding:6rem 2rem;position:relative;overflow:hidden}
+
+.cta-section h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--text);margin-bottom:1rem;position:relative}
+.cta-section p{color:var(--muted);max-width:450px;margin:0 auto 2.5rem;line-height:1.7;position:relative}
+.btn-primary{padding:0.9rem 2.2rem;background:var(--accent);color:#fff;font-weight:700;font-size:0.95rem;border-radius:50px;text-decoration:none;display:inline-block;transition:background 0.3s ease,transform 0.2s;position:relative}
+.btn-primary:hover{transform:translateY(-2px);background:var(--accent2)}
+
+@media(max-width:900px){.case-card.featured{grid-column:span 1}}
+@media(max-width:768px){
+  .hero,.filter-bar,.cases-grid{padding-left:1.5rem;padding-right:1.5rem}
+  .cases-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="nav-logo"><img src="../assets/img/logo-mark.png" alt="ertweb" class="nav-logo-img"></a>
+  <ul class="site-nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="automatizaciones.html">Automatizaciones</a></li>
+    <li><a href="casos-de-estudio.html" class="active">Casos de estudio</a></li>
+    <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+    <li><a href="portal-clientes.html">Portal clientes</a></li>
+    <li><a href="contact.html">Contacto</a></li>
+  </ul>
+</nav>
+
+<button id="burger" aria-label="Menu">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+  </svg>
+</button>
+
+<div class="burger-overlay">
+  <div class="burger-content">
+    <ul class="burger-list">
+      <li><div class="burger-link-wrapper"><a href="../index.html" class="burger-link">Inicio</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="automatizaciones.html" class="burger-link">Automatizaciones</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="casos-de-estudio.html" class="burger-link">Casos de estudio</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="experiencia-3d.html" class="burger-link">Experiencia 3D</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="portal-clientes.html" class="burger-link">Portal clientes</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="contact.html" class="burger-link">Contacto</a></div></li>
+    </ul>
+    <div class="burger-footer">
+      <span>Redes Sociales</span>
+      <div class="burger-social-links">
+        <a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">instagram</a>
+        <a href="https://x.com/ertWeb" target="_blank">twitter</a>
+        <a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">tiktok</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Portafolio de trabajo</p>
+  <h1>Proyectos que<br>generan <em>resultados reales</em></h1>
+  <div class="hero-meta">
+    <div class="m"><strong>10+</strong>Proyectos entregados</div>
+    <div class="m"><strong>100%</strong>Satisfacción de clientes</div>
+    <div class="m"><strong>3+</strong>Años de experiencia</div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filter(this,'all')">Todos</button>
+  <button class="filter-btn" onclick="filter(this,'3d')">Experiencias 3D</button>
+  <button class="filter-btn" onclick="filter(this,'web')">Diseño Web</button>
+  <button class="filter-btn" onclick="filter(this,'auto')">Automatizaciones</button>
+  <button class="filter-btn" onclick="filter(this,'fullstack')">Full-Stack</button>
+</div>
+
+<!-- CASES -->
+<div class="cases-grid" id="cases-grid">
+
+  <!-- Case 1: Malta 3D -->
+  <div class="case-card featured" data-cat="3d">
+    <div class="case-img-placeholder">🍺</div>
+    <div class="case-body">
+      <div class="case-tags">
+        <span class="case-cat">Experiencia 3D</span>
+        <span class="case-tag">Three.js</span>
+        <span class="case-tag">GSAP</span>
+        <span class="case-tag">ScrollTrigger</span>
+        <span class="case-tag">WebGL</span>
+      </div>
+      <h3>Experiencia Web 3D — Maltín Polar</h3>
+      <p>Landing page interactiva donde una botella 3D del producto protagoniza una narrativa animada completa. El usuario scroll-controla la animación mientras descubre la marca. Proyecto de práctica que demostró capacidad técnica avanzada en WebGL.</p>
+      <div class="case-results">
+        <div class="result-stat"><div class="r-num">60fps</div><div class="r-label">Performance constante</div></div>
+        <div class="result-stat"><div class="r-num">3D</div><div class="r-label">Modelo GLTF interactivo</div></div>
+        <div class="result-stat"><div class="r-num">100%</div><div class="r-label">Responsive</div></div>
+      </div>
+      <a href="https://malta-maltin.netlify.app/" target="_blank" class="case-link">Ver sitio en vivo ↗</a>
+    </div>
+  </div>
+
+  <!-- Case 2: FBO -->
+  <div class="case-card" data-cat="web">
+    <div class="case-img-placeholder">✈️</div>
+    <div class="case-body">
+      <div class="case-tags">
+        <span class="case-cat">Diseño Web</span>
+        <span class="case-tag">HTML/CSS</span>
+        <span class="case-tag">JavaScript</span>
+        <span class="case-tag">GSAP</span>
+      </div>
+      <h3>Caracas Flight Service (FBO)</h3>
+      <p>Landing page premium para servicio de aviación corporativa. Diseño sofisticado con animaciones de entrada, formulario de cotización y estructura SEO optimizada para captar clientes B2B.</p>
+      <div class="case-results">
+        <div class="result-stat"><div class="r-num">A+</div><div class="r-label">SEO Score</div></div>
+        <div class="result-stat"><div class="r-num">2s</div><div class="r-label">Tiempo de carga</div></div>
+      </div>
+      <a href="https://caracas-flight-servicess.netlify.app/" target="_blank" class="case-link">Ver sitio en vivo ↗</a>
+    </div>
+  </div>
+
+  <!-- Case 3: Athena POS -->
+  <div class="case-card" data-cat="fullstack">
+    <div class="case-img-placeholder">🏪</div>
+    <div class="case-body">
+      <div class="case-tags">
+        <span class="case-cat">Full-Stack</span>
+        <span class="case-tag">React</span>
+        <span class="case-tag">Node.js</span>
+        <span class="case-tag">Prisma</span>
+        <span class="case-tag">PostgreSQL</span>
+      </div>
+      <h3>Sistema POS Athena — Heladería</h3>
+      <p>Sistema punto de venta completo con gestión multi-sucursal, manejo de múltiples divisas (USD/VES), reportes financieros en tiempo real, control de inventario y modo oscuro total para uso intensivo.</p>
+      <div class="case-results">
+        <div class="result-stat"><div class="r-num">3x</div><div class="r-label">Velocidad de cobro</div></div>
+        <div class="result-stat"><div class="r-num">2</div><div class="r-label">Sucursales activas</div></div>
+        <div class="result-stat"><div class="r-num">100%</div><div class="r-label">Uptime en producción</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 4: Automation -->
+  <div class="case-card" data-cat="auto">
+    <div class="case-img-placeholder">🤖</div>
+    <div class="case-body">
+      <div class="case-tags">
+        <span class="case-cat">Automatización IA</span>
+        <span class="case-tag">n8n</span>
+        <span class="case-tag">WhatsApp API</span>
+        <span class="case-tag">OpenAI</span>
+      </div>
+      <h3>Agente IA de Atención al Cliente</h3>
+      <p>Sistema de atención automatizada que responde consultas por WhatsApp usando GPT-4, clasificando solicitudes, escalando casos complejos y generando reportes de interacciones para el equipo.</p>
+      <div class="case-results">
+        <div class="result-stat"><div class="r-num">80%</div><div class="r-label">Consultas resueltas sin humano</div></div>
+        <div class="result-stat"><div class="r-num">24/7</div><div class="r-label">Disponibilidad</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-section">
+  <blockquote>"ertweb transformó completamente nuestra presencia digital. El sistema POS que desarrollaron nos ahorró horas de trabajo manual cada día."</blockquote>
+  <cite>— Cliente Athena POS · Heladería Santa Teresa, Caracas</cite>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>¿Tu proyecto podría<br>ser el próximo caso?</h2>
+  <p>Cuéntame tu idea y construimos algo que valga la pena mostrar.</p>
+  <a href="contact.html" class="btn-primary">Iniciar mi proyecto →</a>
+</section>
+
+<footer class="site-footer flat-top">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">ertweb</span>
+      <p class="footer-tagline">Diseño que piensa. Código que siente.</p>
+    </div>
+    <div class="footer-nav">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="automatizaciones.html">Automatizaciones</a></li>
+        <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+        <li><a href="portal-clientes.html">Portal clientes</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <h4>Redes Sociales</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
+        <li><a href="https://x.com/ertWeb" target="_blank">Twitter / X</a></li>
+        <li><a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-info">
+      <h4>Contacto</h4>
+      <p>ertweb@gmail.com</p>
+      <p>Caracas, Venezuela</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ertweb. Todos los derechos reservados.</p>
+    <p class="footer-crafted">Hecho con código y café ☕</p>
+  </div>
+</footer>
+
+<script>
+function filter(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-card').forEach(card => {
+    const show = cat === 'all' || card.dataset.cat === cat;
+    card.style.display = show ? '' : 'none';
+  });
+}
+</script>
+<script src="../assets/js/site-nav.js"></script>
+</body>
+</html>

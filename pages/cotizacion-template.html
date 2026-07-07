@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cotización ERTWeb</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fc;
+    padding: 0;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 1120px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #57286d 50%, #2a2a2a 100%);
+    color: #fff;
+    padding: 48px 56px 40px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #fff;
+    border-radius: 50% 50% 0 0;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .logo {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .logo span { color: #7b3f96; }
+  .header-meta {
+    text-align: right;
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.8;
+  }
+  .quote-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: #7b3f96;
+    background: rgba(123, 63, 150, 0.15);
+    padding: 4px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  /* Content */
+  .content {
+    padding: 20px 56px 56px;
+  }
+
+  /* Client Info */
+  .client-section {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .info-block {
+    flex: 1;
+    background: #f8f9fc;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid #7b3f96;
+  }
+  .info-block h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7b3f96;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .info-block p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #444;
+  }
+  .info-block strong {
+    color: #1a1a2e;
+  }
+
+  /* Services Table */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 22px;
+    background: #7b3f96;
+    border-radius: 2px;
+  }
+
+  .services-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+  }
+  .services-table thead th {
+    background: #f1e9f7;
+    color: #57286d;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .services-table thead th:last-child {
+    text-align: right;
+  }
+  .services-table tbody td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #f0f0f5;
+    font-size: 14px;
+    color: #444;
+  }
+  .services-table tbody td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+  .services-table tbody tr:hover {
+    background: #fafafe;
+  }
+  .service-name {
+    font-weight: 600;
+    color: #1a1a2e;
+    display: block;
+  }
+  .service-desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* Totals */
+  .totals {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+  }
+  .totals-box {
+    width: 280px;
+  }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 1px solid #f0f0f5;
+  }
+  .total-row.final {
+    border-bottom: none;
+    border-top: 2px solid #7b3f96;
+    padding-top: 14px;
+    margin-top: 4px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  .total-row.final span:last-child {
+    color: #7b3f96;
+  }
+
+  /* Terms */
+  .terms {
+    background: #f8f9fc;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 40px;
+  }
+  .terms h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #1a1a2e;
+  }
+  .terms ul {
+    list-style: none;
+    padding: 0;
+  }
+  .terms li {
+    font-size: 13px;
+    color: #666;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .terms li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #7b3f96;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #57286d 100%);
+    color: #fff;
+    padding: 32px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px 12px 0 0;
+    margin-top: auto;
+  }
+  .footer-left {
+    font-size: 13px;
+    opacity: 0.8;
+    line-height: 1.8;
+  }
+  .footer-right {
+    text-align: right;
+  }
+  .footer-right .logo {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .footer-right p {
+    font-size: 12px;
+    opacity: 0.6;
+  }
+
+  /* Signature */
+  .signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    margin-bottom: 32px;
+  }
+  .signature-block {
+    width: 45%;
+    text-align: center;
+  }
+  .signature-line {
+    border-top: 2px solid #ddd;
+    margin-top: 60px;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #888;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="logo">ERT<span>Web</span></div>
+        <p style="font-size:13px; opacity:0.7; margin-top:4px;">Desarrollo Web Profesional</p>
+      </div>
+      <div class="header-meta">
+        <div class="quote-number">COT-240528</div><br>
+        <strong>Fecha:</strong> 28 de Mayo, 2025<br>
+        <strong>Válida hasta:</strong> 12 de Junio, 2025
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Client + Company Info -->
+    <div class="client-section">
+      <div class="info-block">
+        <h3>Cliente</h3>
+        <p>
+          <strong>Juan Pérez</strong><br>
+          juan@empresa.com<br>
+          +58 414-1234567<br>
+          Empresa XYZ C.A.
+        </p>
+      </div>
+      <div class="info-block">
+        <h3>De</h3>
+        <p>
+          <strong>ERTWeb</strong><br>
+          ertwebdev@gmail.com<br>
+          Venezuela<br>
+          Desarrollo & Diseño Web
+        </p>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="section-title">Detalle de Servicios</div>
+    <table class="services-table">
+      <thead>
+        <tr>
+          <th style="width:50%">Servicio</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="service-name">Página Web Corporativa</span>
+            <span class="service-desc">Diseño responsive, hasta 5 secciones, optimizada para SEO</span>
+          </td>
+          <td>1</td>
+          <td>$500.00</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="service-name">Diseño de Logo</span>
+            <span class="service-desc">3 propuestas, 2 revisiones, entrega en formatos vectoriales</span>
+          </td>
+          <td>1</td>
+          <td>$150.00</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="service-name">Formulario de Contacto Avanzado</span>
+            <span class="service-desc">Integración WhatsApp, validación, notificaciones email</span>
+          </td>
+          <td>1</td>
+          <td>$75.00</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="service-name">Hosting + Dominio (1 año)</span>
+            <span class="service-desc">Certificado SSL, soporte técnico incluido</span>
+          </td>
+          <td>1</td>
+          <td>$120.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Totals -->
+    <div class="totals">
+      <div class="totals-box">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span>$845.00</span>
+        </div>
+        <div class="total-row">
+          <span>Descuento</span>
+          <span>-$45.00</span>
+        </div>
+        <div class="total-row final">
+          <span>Total</span>
+          <span>$800.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terms -->
+    <div class="terms">
+      <h3>Términos y Condiciones</h3>
+      <ul>
+        <li>Forma de pago: 50% anticipo para iniciar, 50% al entregar el proyecto</li>
+        <li>Tiempo estimado de entrega: 15-20 días hábiles según complejidad</li>
+        <li>Incluye 2 rondas de revisiones sin costo adicional</li>
+        <li>Revisiones adicionales: $25/hora</li>
+        <li>Soporte post-lanzamiento: 30 días sin costo</li>
+        <li>Esta cotización es válida por 15 días desde la fecha de emisión</li>
+        <li>Los precios están expresados en dólares americanos (USD)</li>
+      </ul>
+    </div>
+
+    <!-- Signatures -->
+    <div class="signature-section">
+      <div class="signature-block">
+        <div class="signature-line">ERTWeb — Proveedor</div>
+      </div>
+      <div class="signature-block">
+        <div class="signature-line">Cliente — Aceptación</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      ertwebdev@gmail.com<br>
+      Venezuela
+    </div>
+    <div class="footer-right">
+      <div class="logo">ERT<span>Web</span></div>
+      <p>Desarrollo Web Profesional</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

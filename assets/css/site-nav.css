@@ -1,0 +1,137 @@
+/* ===========================================
+   SITE NAV — shared header/burger/footer glue
+   for every page that isn't index.html.
+   Reuses .main-header / .burger-* / .site-footer
+   rules already defined in styles.css and only
+   adapts them to pages that have no intro loader.
+=========================================== */
+
+.nav-logo-img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+/* ===========================================
+   SHARED TOP NAV — identical on every subpage.
+   Light bar, black links, purple hover: the same
+   look as index's header.
+=========================================== */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  background: rgba(235, 235, 235, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.site-nav .nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav-links a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a.active {
+  color: #57286d;
+}
+
+@media (max-width: 768px) {
+  .site-nav {
+    padding: 12px 16px;
+  }
+
+  .site-nav-links {
+    display: none;
+  }
+}
+
+/* Burger toggle button — mobile-only entry point on subpages (no scroll gating).
+   Desktop already shows the full nav-links row, so the burger stays hidden there. */
+#burger {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 769px) {
+  #burger {
+    display: none;
+  }
+}
+
+/* Burger overlay — plain CSS open/close instead of the GSAP timeline used on index */
+.burger-overlay {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.burger-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.burger-content {
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.burger-overlay.open .burger-content {
+  transform: translateX(0);
+}
+
+.burger-overlay.open .burger-link {
+  transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.burger-overlay.open .burger-list li:nth-child(1) .burger-link { transition-delay: 0.05s; }
+.burger-overlay.open .burger-list li:nth-child(2) .burger-link { transition-delay: 0.1s; }
+.burger-overlay.open .burger-list li:nth-child(3) .burger-link { transition-delay: 0.15s; }
+.burger-overlay.open .burger-list li:nth-child(4) .burger-link { transition-delay: 0.2s; }
+.burger-overlay.open .burger-list li:nth-child(5) .burger-link { transition-delay: 0.25s; }
+.burger-overlay.open .burger-list li:nth-child(6) .burger-link { transition-delay: 0.3s; }
+.burger-overlay.open .burger-list li:nth-child(7) .burger-link { transition-delay: 0.35s; }
+
+/* styles.css hides index's .hero (opacity:0) until the GSAP intro reveals it,
+   and lays it out as a bottom-aligned 100vh flexbox. Subpages have no intro,
+   so reset it here; each page's own <style> (loaded after this file) re-applies
+   the layout it actually wants. */
+.hero {
+  opacity: 1;
+  display: block;
+  height: auto;
+  align-items: initial;
+  justify-content: initial;
+  padding-bottom: 0;
+  z-index: auto;
+}
+
+/* Full site-footer reused on subpages sits directly on a dark page background,
+   so it doesn't need the rounded top corners meant to cap index's light hero. */
+.site-footer.flat-top {
+  border-radius: 0;
+}

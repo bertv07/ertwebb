@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatizaciones con IA | ertweb</title>
+  <meta name="description"
+    content="Automatiza tu negocio con Inteligencia Artificial. Flujos personalizados, integraciones y sistemas que trabajan por ti.">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/site-nav.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg2: #ebebeb;
+      --surface: #ffffff;
+      --accent: #57286d;
+      --accent2: #7b3f96;
+      --accent3: #57286d;
+      --text: #1a1a1a;
+      --muted: #666;
+      --light: #ebebeb;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg2);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      display: none;
+    }
+
+    .hero-grid {
+      display: none;
+    }
+
+    .hero-container {
+      margin-top: -15rem;
+    }
+
+
+    #particles-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero h2 {
+      font-size: clamp(2.5rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #313131;
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+      position: relative;
+      left: -20vw;
+    }
+
+
+    .hero p {
+      margin-top: 1.8rem;
+      max-width: 760px;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
+      position: relative;
+      left: -11vw;
+      text-align: left;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.9s forwards;
+      position: relative;
+      left: -18.5vw;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2.2rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 16px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: var(--accent2);
+    }
+
+    .btn-outline {
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      color: #000000;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 16px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(87, 40, 109, 0.08);
+    }
+
+    .hero-stats {
+      position: absolute;
+      left: 70%;
+      top: 15%;
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.1s forwards;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .stat-item .label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== SERVICES GRID / QUE INCLUYE ===== */
+    .section {
+      padding: 0rem 3rem;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    #servicios {
+      margin-top: -20rem;
+    }
+
+    .que-incluye-container {
+      padding: 5rem 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .que-incluye-title {
+      font-size: clamp(2rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: #000000;
+      margin-bottom: 5rem;
+    }
+
+    .que-incluye-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5rem 8rem;
+    }
+
+    .que-incluye-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .card-header h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .card-header .arrow {
+      font-size: 1.3rem;
+      color: var(--accent3);
+      font-weight: 600;
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.95rem;
+      color: #333333;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .que-incluye-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      #servicios {
+        margin-top: -5rem;
+      }
+    }
+
+    /* ===== BENEFICIOS ===== */
+    .beneficios-banner-container {
+      padding: 4rem 3rem;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .beneficios-banner {
+      background-color: #1a1a1a;
+      border-radius: 32px;
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .beneficios-banner h2 {
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 3.5rem;
+    }
+
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .beneficio-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .beneficio-circle {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .beneficio-circle svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .beneficio-item p {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.4;
+      max-width: 180px;
+    }
+
+    /* ===== PROCESO ===== */
+    .proceso-section {
+      padding: 6rem 3rem;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .proceso-title {
+      font-size: clamp(2rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: #000000;
+      margin-bottom: 5rem;
+    }
+
+    .proceso-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .proceso-card-wrap {
+      position: relative;
+      padding-top: 1.5rem;
+    }
+
+    .proceso-num {
+      position: absolute;
+      top: 0;
+      left: 2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #111115;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .proceso-card {
+      background-color: #f4f4f6;
+      border-radius: 16px;
+      padding: 2.5rem 2rem 2rem;
+      height: calc(100% - 1.5rem);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .proceso-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111115;
+      margin-bottom: 1rem;
+    }
+
+    .proceso-card p {
+      font-size: 0.88rem;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .beneficios-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem 2rem;
+      }
+      .proceso-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .beneficios-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .beneficios-banner {
+        padding: 3rem 1.5rem;
+      }
+      .proceso-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      .proceso-section {
+        padding: 4rem 1.5rem;
+      }
+      .beneficios-banner-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* ===== TOOLS ===== */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .tool-pill {
+      background: var(--surface);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.2s;
+      cursor: default;
+    }
+
+    .tool-pill:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .tool-pill .t-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tool-pill .t-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: 6rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      color: #111115;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.1;
+    }
+
+    .cta-section p {
+      color: #4b5563;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-title {
+      font-size: clamp(2rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: #000000;
+      margin-bottom: 5rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem 6rem;
+    }
+
+    .faq-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #111115;
+      line-height: 1.4;
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .faq-section {
+        padding: 4rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 4rem 1.5rem;
+      }
+
+      .process-steps::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/img/logo-mark.png" alt="ertweb" class="nav-logo-img">
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="automatizaciones.html" class="active">Automatizaciones</a></li>
+      <li><a href="casos-de-estudio.html">Casos de estudio</a></li>
+      <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+      <li><a href="portal-clientes.html">Portal clientes</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- BURGER MENU (mobile) -->
+  <button id="burger" aria-label="Menu">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <div class="burger-overlay">
+    <div class="burger-content">
+      <ul class="burger-list">
+        <li>
+          <div class="burger-link-wrapper"><a href="../index.html" class="burger-link">Inicio</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="automatizaciones.html" class="burger-link">Automatizaciones</a>
+          </div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="casos-de-estudio.html" class="burger-link">Casos de estudio</a>
+          </div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="experiencia-3d.html" class="burger-link">Experiencia 3D</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="portal-clientes.html" class="burger-link">Portal clientes</a>
+          </div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="contact.html" class="burger-link">Contacto</a></div>
+        </li>
+      </ul>
+      <div class="burger-footer">
+        <span>Redes Sociales</span>
+        <div class="burger-social-links">
+          <a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank">instagram</a>
+          <a href="https://x.com/ertWeb" target="_blank">twitter</a>
+          <a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">tiktok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-container">
+      <h2>Automatizaciones</h2>
+      <p>Conectamos tus canales de captación, automatizamos tu atención por WhatsApp y gestionamos tus leads en piloto
+        automático. Escala tus operaciones sin aumentar tu nómina</p>
+
+      <div class="hero-actions">
+        <a href="diagnostico.html" class="btn-primary">Diagnóstico Gratuito</a>
+        <a href="#servicios" class="btn-outline">Nuestros procesos</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="num">80%</div>
+          <div class="label">Reducción de tareas manuales</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">24/7</div>
+          <div class="label">Sistemas operando sin parar</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">3x</div>
+          <div class="label">Velocidad de procesos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (QUE INCLUYE) -->
+  <section class="section" id="servicios">
+    <div class="que-incluye-container">
+      <h2 class="que-incluye-title">Qué incluye</h2>
+
+      <div class="que-incluye-grid">
+
+        <!-- Flujos de Trabajo -->
+        <div class="que-incluye-card">
+          <div class="card-header">
+            <h3>Flujos de Trabajo (Workflows)</h3>
+            <span class="arrow">→</span>
+          </div>
+          <ul class="check-list">
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Conexión de tus aplicaciones favoritas sin código</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Sincronización automática de datos entre herramientas</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Integración con Gmail, Sheets, Notion y Slack</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Flujos condicionales y lógica avanzada de negocio</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Reducción de tareas administrativas y errores manuales</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Agentes con IA -->
+        <div class="que-incluye-card">
+          <div class="card-header">
+            <h3>Agentes con IA</h3>
+            <span class="arrow">→</span>
+          </div>
+          <ul class="check-list">
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Lectura y clasificación inteligente de correos</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Respuesta automática y redactado de borradores con IA</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Procesamiento de archivos y extracción de datos clave</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Agentes autónomos para toma de decisiones (GPT, Claude)</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Integración profunda con tus herramientas internas</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Chatbots Inteligentes -->
+        <div class="que-incluye-card">
+          <div class="card-header">
+            <h3>Chatbots Inteligentes</h3>
+            <span class="arrow">→</span>
+          </div>
+          <ul class="check-list">
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Atención al cliente conversacional 24/7 sin demoras</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Cualificación automática y captación de leads cualificados</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Entrenamiento directo con la base de datos de tu empresa</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Despliegue nativo en WhatsApp, Instagram, Facebook y Web</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Escalado inteligente y transparente a agentes humanos</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Reportes Automáticos -->
+        <div class="que-incluye-card">
+          <div class="card-header">
+            <h3>Reportes Automáticos</h3>
+            <span class="arrow">→</span>
+          </div>
+          <ul class="check-list">
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Creación y consolidación de dashboards interactivos</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Consolidación de métricas clave de ventas y operaciones</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Envío programado de reportes consolidados por email o Slack</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Conexión directa con Google Sheets y Looker Studio</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Visualización analítica de tus datos de negocio en tiempo real</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- E-commerce Automatizado -->
+        <div class="que-incluye-card">
+          <div class="card-header">
+            <h3>E-commerce Automatizado</h3>
+            <span class="arrow">→</span>
+          </div>
+          <ul class="check-list">
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Sincronización automática de inventario multicanal</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Procesamiento automático de pedidos y flujos de facturación</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Actualización de stock y despachos en tiempo real</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Notificaciones y confirmaciones automáticas de compra al cliente</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Integración con Shopify, WooCommerce y ERPs locales</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Marketing Automatizado -->
+        <div class="que-incluye-card">
+          <div class="card-header">
+            <h3>Marketing Automatizado</h3>
+            <span class="arrow">→</span>
+          </div>
+          <ul class="check-list">
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Secuencias automáticas de bienvenida y captación</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Campañas personalizadas según comportamiento del usuario</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Estrategias de lead nurturing y retención automatizadas</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Integración con Mailchimp, ActiveCampaign y CRMs</span>
+            </li>
+            <li>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#57286d" />
+                <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>Automatización y programación inteligente de contenidos</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <div class="beneficios-banner-container">
+    <div class="beneficios-banner">
+      <h2>Beneficios</h2>
+      <div class="beneficios-grid">
+        <div class="beneficio-item">
+          <div class="beneficio-circle">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#57286d" />
+              <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <p>IA que trabaja 24/7 por tu negocio</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-circle">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#57286d" />
+              <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <p>Atención al cliente automatizada</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-circle">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#57286d" />
+              <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <p>Agentes autónomos para tareas complejas</p>
+        </div>
+        <div class="beneficio-item">
+          <div class="beneficio-circle">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#57286d" />
+              <path d="M8 12.5L10.5 15L16 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <p>Integración con tus herramientas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <section class="proceso-section">
+    <h2 class="proceso-title">Nuestro proceso</h2>
+    <div class="proceso-grid">
+
+      <!-- Paso 1 -->
+      <div class="proceso-card-wrap">
+        <div class="proceso-num">1</div>
+        <div class="proceso-card">
+          <h4>Análisis de procesos</h4>
+          <p>Mapeamos tus procesos actuales e identificamos dónde la IA puede automatizar tareas, mejorar la atención al cliente o acelerar la toma de decisiones.</p>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="proceso-card-wrap">
+        <div class="proceso-num">2</div>
+        <div class="proceso-card">
+          <h4>Diseño de la solución</h4>
+          <p>Diseñamos la arquitectura: agentes IA, chatbots, automatizaciones inteligentes o una combinación. Elegimos los modelos y herramientas adecuados.</p>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="proceso-card-wrap">
+        <div class="proceso-num">3</div>
+        <div class="proceso-card">
+          <h4>Desarrollo e integración</h4>
+          <p>Desarrollamos la solución, la integramos con tus herramientas y sistemas, y la entrenamos con datos reales de tu negocio.</p>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div class="proceso-card-wrap">
+        <div class="proceso-num">4</div>
+        <div class="proceso-card">
+          <h4>Lanzamiento y optimización</h4>
+          <p>Desplegamos en producción, monitorizamos el rendimiento y optimizamos continuamente la precisión y eficacia de las automatizaciones.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2 class="faq-title">Preguntas frecuentes</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>¿Qué tipo de automatizaciones con IA ofrecéis?</h3>
+        <p>Tres tipos principales: agentes IA autónomos que ejecutan tareas complejas, chatbots inteligentes (de texto y telefónicos con Retell) para atención al cliente y captación, y automatizaciones con IA que añaden inteligencia a tus flujos de trabajo existentes.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿En qué se diferencia un agente IA de un chatbot?</h3>
+        <p>Un chatbot conversa con usuarios por texto o teléfono. Un agente IA es un sistema autónomo que ejecuta tareas complejas: investiga, analiza datos, toma decisiones y actúa en herramientas externas sin necesidad de interacción humana constante.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Qué es Retell y para qué sirve?</h3>
+        <p>Retell es la plataforma líder para crear agentes telefónicos con IA. Permite construir asistentes de voz que suenan naturales, atienden llamadas, cualifican leads y agendan citas. Ideal para empresas que reciben muchas llamadas o quieren automatizar el contacto telefónico.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Se integra con las herramientas que ya uso?</h3>
+        <p>Sí. Integramos con CRMs (HubSpot, Salesforce, GoHighLevel), herramientas de automatización (n8n, Make), canales de comunicación (WhatsApp, email, web) y cualquier sistema con API.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Necesito conocimientos técnicos?</h3>
+        <p>No. Configuramos todo para que funcione de forma autónoma. Te proporcionamos dashboards de monitorización sencillos y nos encargamos del mantenimiento técnico.</p>
+      </div>
+      <div class="faq-item">
+        <h3>¿Cuánto se ahorra con automatizaciones con IA?</h3>
+        <p>Nuestros clientes ahorran entre 10 y 40 horas semanales y reducen costes de atención al cliente hasta un 60%. Además, mejoran la velocidad de respuesta y la cualificación de leads de forma significativa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>¿Listo para empezar?</h2>
+    <p>Comienza a automatizar tus operaciones y escala tu negocio sin límites.</p>
+    <a href="diagnostico.html" class="btn-primary" style="display:inline-block; font-size:1rem;">Automatizar con IA →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer flat-top">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">ertweb</span>
+        <p class="footer-tagline">Diseño que piensa. Código que siente.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="casos-de-estudio.html">Casos de estudio</a></li>
+          <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+          <li><a href="portal-clientes.html">Portal clientes</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Redes Sociales</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              target="_blank">Instagram</a></li>
+          <li><a href="https://x.com/ertWeb" target="_blank">Twitter / X</a></li>
+          <li><a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-contact-info">
+        <h4>Contacto</h4>
+        <p>ertweb@gmail.com</p>
+        <p>Caracas, Venezuela</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 ertweb. Todos los derechos reservados.</p>
+      <p class="footer-crafted">Hecho con código y café ☕</p>
+    </div>
+  </footer>
+
+  <script>
+    // Particles Canvas
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.r = Math.random() * 2 + 0.5;
+        this.alpha = Math.random() * 0.4 + 0.1;
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(87,40,109,${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 80; i++) particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(87,40,109,${0.3 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => { resize(); initParticles(); });
+    resize(); initParticles(); animate();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+  </script>
+  <script src="../assets/js/site-nav.js"></script>
+</body>
+
+</html>

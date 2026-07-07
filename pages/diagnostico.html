@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Gratuito | ertweb</title>
+<meta name="description" content="Descubre qué procesos de tu negocio puedes automatizar con IA. Diagnóstico gratuito en 2 minutos.">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/site-nav.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#ebebeb;--surface:#ffffff;--accent:#57286d;--accent2:#7b3f96;--accent3:#57286d;--text:#1a1a1a;--muted:#666}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+.page-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 1.5rem 4rem}
+
+.diag-header{text-align:center;margin-bottom:3rem}
+.diag-label{font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:1rem}
+.diag-header h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;color:var(--text);margin-bottom:1rem}
+.diag-header p{color:var(--muted);font-size:1rem;line-height:1.6;max-width:500px;margin:0 auto}
+
+/* Progress bar */
+.progress-bar{width:100%;max-width:640px;height:4px;background:rgba(0,0,0,0.1);border-radius:2px;margin:0 auto 2.5rem;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.5s ease;width:0%}
+
+/* Wizard Card */
+.wizard-card{background:var(--surface);border:1px solid rgba(0,0,0,0.08);border-radius:24px;padding:2.5rem;width:100%;max-width:640px;position:relative;min-height:380px;box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+
+.step-indicator{font-size:0.75rem;font-weight:700;color:var(--accent3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem}
+
+.question-block{display:none}.question-block.active{display:block}
+
+.question-block h2{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:0.5rem;line-height:1.3}
+.question-block .q-sub{font-size:0.9rem;color:var(--muted);margin-bottom:2rem}
+
+/* Options */
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:2rem}
+.opt{background:rgba(0,0,0,0.02);border:1.5px solid rgba(0,0,0,0.1);border-radius:14px;padding:1rem 1.2rem;cursor:pointer;transition:all 0.2s;text-align:left}
+.opt:hover{border-color:var(--accent2);background:rgba(87,40,109,0.06)}
+.opt.selected{border-color:var(--accent);background:rgba(87,40,109,0.1)}
+.opt .opt-icon{font-size:1.4rem;margin-bottom:0.4rem}
+.opt .opt-label{font-size:0.85rem;font-weight:700;color:var(--text)}
+.opt .opt-desc{font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+
+/* Single col options */
+.options-list{display:flex;flex-direction:column;gap:0.7rem;margin-bottom:2rem}
+.opt-row{background:rgba(0,0,0,0.02);border:1.5px solid rgba(0,0,0,0.1);border-radius:12px;padding:0.9rem 1.2rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.8rem}
+.opt-row:hover{border-color:var(--accent2)}
+.opt-row.selected{border-color:var(--accent);background:rgba(87,40,109,0.1)}
+.opt-row span{font-size:0.9rem;font-weight:600;color:var(--text)}
+
+/* Input */
+.q-input{width:100%;background:#ffffff;border:1.5px solid rgba(0,0,0,0.15);border-radius:12px;padding:1rem;color:var(--text);font-family:'Montserrat',sans-serif;font-size:0.95rem;margin-bottom:2rem;transition:border-color 0.2s;outline:none}
+.q-input:focus{border-color:var(--accent2)}
+.q-input::placeholder{color:var(--muted)}
+
+/* Nav buttons */
+.wizard-nav{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.btn-prev{background:transparent;border:1.5px solid rgba(0,0,0,0.15);color:var(--muted);padding:0.75rem 1.5rem;border-radius:50px;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;font-family:'Montserrat',sans-serif}
+.btn-prev:hover{border-color:rgba(0,0,0,0.35);color:var(--text)}
+.btn-next{background:var(--accent);color:#fff;padding:0.75rem 2rem;border-radius:50px;font-weight:700;font-size:0.85rem;cursor:pointer;border:none;transition:background 0.3s ease,transform 0.2s;font-family:'Montserrat',sans-serif}
+.btn-next:hover{transform:translateY(-2px);background:var(--accent2)}
+
+/* Result screen */
+.result-screen{display:none;text-align:center}
+.result-screen.active{display:block}
+.result-icon{font-size:4rem;margin-bottom:1.5rem}
+.result-screen h2{font-size:1.8rem;font-weight:900;color:var(--text);margin-bottom:1rem}
+.result-screen p{color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.result-tags{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-bottom:2rem}
+.result-tag{padding:0.4rem 1rem;border-radius:50px;border:1px solid rgba(87,40,109,0.35);color:var(--accent);font-size:0.8rem;font-weight:700}
+.result-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:0.85rem 2rem;background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem;border-radius:50px;text-decoration:none;display:inline-block;transition:background 0.3s ease,transform 0.2s}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-outline{padding:0.85rem 2rem;border:1.5px solid rgba(0,0,0,0.2);color:var(--text);font-weight:700;font-size:0.9rem;border-radius:50px;text-decoration:none;transition:border-color 0.2s}
+.btn-outline:hover{border-color:var(--accent)}
+
+@media(max-width:600px){
+  .options-grid{grid-template-columns:1fr}
+  .wizard-card{padding:1.8rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="nav-logo"><img src="../assets/img/logo-mark.png" alt="ertweb" class="nav-logo-img"></a>
+  <ul class="site-nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="automatizaciones.html" class="active">Automatizaciones</a></li>
+    <li><a href="casos-de-estudio.html">Casos de estudio</a></li>
+    <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+    <li><a href="portal-clientes.html">Portal clientes</a></li>
+    <li><a href="contact.html">Contacto</a></li>
+  </ul>
+</nav>
+
+<button id="burger" aria-label="Menu">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+  </svg>
+</button>
+
+<div class="burger-overlay">
+  <div class="burger-content">
+    <ul class="burger-list">
+      <li><div class="burger-link-wrapper"><a href="../index.html" class="burger-link">Inicio</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="automatizaciones.html" class="burger-link">Automatizaciones</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="casos-de-estudio.html" class="burger-link">Casos de estudio</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="experiencia-3d.html" class="burger-link">Experiencia 3D</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="portal-clientes.html" class="burger-link">Portal clientes</a></div></li>
+      <li><div class="burger-link-wrapper"><a href="contact.html" class="burger-link">Contacto</a></div></li>
+    </ul>
+    <div class="burger-footer">
+      <span>Redes Sociales</span>
+      <div class="burger-social-links">
+        <a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">instagram</a>
+        <a href="https://x.com/ertWeb" target="_blank">twitter</a>
+        <a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">tiktok</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="diag-header">
+    <p class="diag-label">🔍 Diagnóstico Gratuito</p>
+    <h1>¿Qué puede automatizar<br>tu negocio?</h1>
+    <p>Responde 5 preguntas rápidas y recibe recomendaciones personalizadas sin costo.</p>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <div class="wizard-card">
+    <div class="step-indicator" id="step-indicator">Paso 1 de 5</div>
+
+    <!-- Q1 -->
+    <div class="question-block active" id="q1">
+      <h2>¿En qué sector opera tu negocio?</h2>
+      <p class="q-sub">Selecciona la opción que mejor lo describe.</p>
+      <div class="options-grid">
+        <div class="opt" data-val="ecommerce"><div class="opt-icon">🛒</div><div class="opt-label">E-commerce</div><div class="opt-desc">Tienda online</div></div>
+        <div class="opt" data-val="servicios"><div class="opt-icon">💼</div><div class="opt-label">Servicios</div><div class="opt-desc">Consultoría, agencia</div></div>
+        <div class="opt" data-val="salud"><div class="opt-icon">🏥</div><div class="opt-label">Salud</div><div class="opt-desc">Clínica, consultorio</div></div>
+        <div class="opt" data-val="restaurante"><div class="opt-icon">🍽️</div><div class="opt-label">Gastronomía</div><div class="opt-desc">Restaurant, delivery</div></div>
+        <div class="opt" data-val="educacion"><div class="opt-icon">📚</div><div class="opt-label">Educación</div><div class="opt-desc">Academia, cursos</div></div>
+        <div class="opt" data-val="otro"><div class="opt-icon">🏢</div><div class="opt-label">Otro</div><div class="opt-desc">Diferente sector</div></div>
+      </div>
+      <div class="wizard-nav"><span></span><button class="btn-next" onclick="next(1)">Siguiente →</button></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q2">
+      <h2>¿Cuántas personas hay en tu equipo?</h2>
+      <p class="q-sub">Esto nos ayuda a definir la escala de la solución.</p>
+      <div class="options-list">
+        <div class="opt-row" data-val="solo"><span>👤 Solo yo (solopreneur)</span></div>
+        <div class="opt-row" data-val="small"><span>👥 2 – 10 personas</span></div>
+        <div class="opt-row" data-val="medium"><span>🏢 11 – 50 personas</span></div>
+        <div class="opt-row" data-val="large"><span>🏦 Más de 50 personas</span></div>
+      </div>
+      <div class="wizard-nav"><button class="btn-prev" onclick="prev(2)">← Anterior</button><button class="btn-next" onclick="next(2)">Siguiente →</button></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q3">
+      <h2>¿Qué tarea te consume más tiempo?</h2>
+      <p class="q-sub">Elige el mayor cuello de botella de tu operación.</p>
+      <div class="options-list">
+        <div class="opt-row" data-val="atencion"><span>💬 Atención al cliente y soporte</span></div>
+        <div class="opt-row" data-val="admin"><span>📋 Tareas administrativas y reportes</span></div>
+        <div class="opt-row" data-val="ventas"><span>📈 Seguimiento de ventas y leads</span></div>
+        <div class="opt-row" data-val="datos"><span>📊 Gestión y análisis de datos</span></div>
+        <div class="opt-row" data-val="marketing"><span>📣 Marketing y contenido</span></div>
+      </div>
+      <div class="wizard-nav"><button class="btn-prev" onclick="prev(3)">← Anterior</button><button class="btn-next" onclick="next(3)">Siguiente →</button></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block" id="q4">
+      <h2>¿Ya usas alguna de estas herramientas?</h2>
+      <p class="q-sub">Selecciona todas las que apliquen.</p>
+      <div class="options-grid">
+        <div class="opt" data-val="sheets"><div class="opt-icon">📊</div><div class="opt-label">Google Sheets</div><div class="opt-desc">/ Excel</div></div>
+        <div class="opt" data-val="whatsapp"><div class="opt-icon">💬</div><div class="opt-label">WhatsApp</div><div class="opt-desc">Business</div></div>
+        <div class="opt" data-val="crm"><div class="opt-icon">🗂️</div><div class="opt-label">CRM</div><div class="opt-desc">HubSpot, Salesforce</div></div>
+        <div class="opt" data-val="gmail"><div class="opt-icon">📧</div><div class="opt-label">Gmail / Email</div><div class="opt-desc">Marketing</div></div>
+        <div class="opt" data-val="erp"><div class="opt-icon">🏭</div><div class="opt-label">ERP / POS</div><div class="opt-desc">Sistema interno</div></div>
+        <div class="opt" data-val="ninguna"><div class="opt-icon">❌</div><div class="opt-label">Ninguna</div><div class="opt-desc">Proceso manual</div></div>
+      </div>
+      <div class="wizard-nav"><button class="btn-prev" onclick="prev(4)">← Anterior</button><button class="btn-next" onclick="next(4)">Siguiente →</button></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-block" id="q5">
+      <h2>¿Cuál es tu email de contacto?</h2>
+      <p class="q-sub">Te enviaremos tu diagnóstico personalizado en menos de 24h.</p>
+      <input type="email" class="q-input" id="email-input" placeholder="correo@tuempresa.com">
+      <div class="wizard-nav"><button class="btn-prev" onclick="prev(5)">← Anterior</button><button class="btn-next" onclick="finish()">Ver mi diagnóstico →</button></div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-screen" id="result">
+      <div class="result-icon">🎯</div>
+      <h2>¡Tu diagnóstico está listo!</h2>
+      <p>Basado en tus respuestas, identificamos <strong style="color:#57286d">3 oportunidades clave</strong> para automatizar tu negocio y ahorrar tiempo valioso:</p>
+      <div class="result-tags" id="result-tags"></div>
+      <p style="font-size:0.85rem">Recibirás un análisis detallado en tu correo. Mientras tanto, podemos hablar directamente sobre tu caso.</p>
+      <div class="result-actions">
+        <a href="contact.html" class="btn-primary">💬 Hablar con ertweb</a>
+        <a href="automatizaciones.html" class="btn-outline">Ver servicios</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer flat-top">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">ertweb</span>
+      <p class="footer-tagline">Diseño que piensa. Código que siente.</p>
+    </div>
+    <div class="footer-nav">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="automatizaciones.html">Automatizaciones</a></li>
+        <li><a href="casos-de-estudio.html">Casos de estudio</a></li>
+        <li><a href="experiencia-3d.html">Experiencia 3D</a></li>
+        <li><a href="portal-clientes.html">Portal clientes</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <h4>Redes Sociales</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
+        <li><a href="https://x.com/ertWeb" target="_blank">Twitter / X</a></li>
+        <li><a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-info">
+      <h4>Contacto</h4>
+      <p>ertweb@gmail.com</p>
+      <p>Caracas, Venezuela</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 ertweb. Todos los derechos reservados.</p>
+    <p class="footer-crafted">Hecho con código y café ☕</p>
+  </div>
+</footer>
+
+<script>
+let current = 1;
+const total = 5;
+const answers = {};
+
+// ⚙️ URL del webhook de n8n (producción) que recibe el diagnóstico.
+const N8N_DIAGNOSTICO_URL = 'https://n8n-n8n.lm6kjk.easypanel.host/webhook/diagnostico-ertweb';
+
+const recs = {
+  atencion: ['Chatbot IA 24/7','Respuestas automáticas','Tickets inteligentes'],
+  admin: ['Reportes automáticos','Sync de datos','Alertas en tiempo real'],
+  ventas: ['CRM automatizado','Follow-up de leads','Pipeline inteligente'],
+  datos: ['Dashboard automático','ETL sin código','Análisis predictivo'],
+  marketing: ['Email sequences','Publicación automática','Segmentación IA']
+};
+
+// Etiquetas legibles para que la IA reciba texto claro en vez de códigos internos
+const labels = {
+  q1: {ecommerce:'E-commerce', servicios:'Servicios / Consultoría', salud:'Salud', restaurante:'Gastronomía', educacion:'Educación', otro:'Otro sector'},
+  q2: {solo:'Solo yo (solopreneur)', small:'2 – 10 personas', medium:'11 – 50 personas', large:'Más de 50 personas'},
+  q3: {atencion:'Atención al cliente y soporte', admin:'Tareas administrativas y reportes', ventas:'Seguimiento de ventas y leads', datos:'Gestión y análisis de datos', marketing:'Marketing y contenido'},
+  q4: {sheets:'Google Sheets / Excel', whatsapp:'WhatsApp Business', crm:'CRM (HubSpot, Salesforce…)', gmail:'Gmail / Email marketing', erp:'ERP / POS', ninguna:'Ninguna (proceso manual)'}
+};
+
+function updateProgress() {
+  document.getElementById('progress').style.width = ((current-1)/total*100)+'%';
+  document.getElementById('step-indicator').textContent = `Paso ${current} de ${total}`;
+}
+
+function next(step) {
+  // Save selection
+  const block = document.getElementById('q'+step);
+  if(block.querySelector('.options-grid')) {
+    // Selección múltiple → guardamos un array con todo lo marcado
+    answers['q'+step] = [...block.querySelectorAll('.opt.selected')].map(o => o.dataset.val);
+  } else {
+    // Selección única
+    const sel = block.querySelector('.selected');
+    if(sel) answers['q'+step] = sel.dataset.val;
+  }
+
+  if(step < total) {
+    document.getElementById('q'+step).classList.remove('active');
+    current = step + 1;
+    document.getElementById('q'+current).classList.add('active');
+    updateProgress();
+  }
+}
+
+function prev(step) {
+  document.getElementById('q'+step).classList.remove('active');
+  current = step - 1;
+  document.getElementById('q'+current).classList.add('active');
+  updateProgress();
+}
+
+function finish() {
+  const emailInput = document.getElementById('email-input');
+  const email = emailInput.value.trim();
+
+  // Validación mínima: sin email no podemos enviar el diagnóstico
+  if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    emailInput.style.borderColor = '#f44336';
+    emailInput.focus();
+    return;
+  }
+  emailInput.style.borderColor = '';
+  answers.email = email;
+
+  const key = answers.q3 || 'admin';
+  const recomendaciones = recs[key] || recs.admin;
+
+  // Traducir respuestas a texto legible para la IA
+  const sector = (answers.q1 || []).map(v => labels.q1[v] || v);
+  const herramientas = (answers.q4 || []).map(v => labels.q4[v] || v);
+
+  // 📦 Payload que recibe tu automatización de n8n (nodo Webhook → IA → Enviar Email)
+  const payload = {
+    source: 'Diagnóstico Web - ertweb',
+    subject: 'Tu Diagnóstico de Automatización con IA - ertweb',
+    email: email,                                   // ← correo al que la IA debe responder
+    respuestas: {
+      sector: sector.length ? sector.join(', ') : 'No especificado',
+      equipo: labels.q2[answers.q2] || 'No especificado',
+      tarea_principal: labels.q3[answers.q3] || 'No especificado',
+      herramientas: herramientas.length ? herramientas : ['Ninguna']
+    },
+    recomendaciones: recomendaciones,               // sugerencias base ya calculadas
+    raw: answers,                                   // respuestas en crudo por si las necesitas
+    fecha: new Date().toISOString()
+  };
+
+  // Enviar a n8n (no bloquea la UI; si el flujo está caído igual mostramos el resultado)
+  fetch(N8N_DIAGNOSTICO_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => console.warn('Falló envío a n8n', err));
+
+  document.getElementById('q5').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('step-indicator').textContent = '¡Diagnóstico completado!';
+
+  // Show tags based on answers
+  const tagContainer = document.getElementById('result-tags');
+  tagContainer.innerHTML = recomendaciones.map(t => `<span class="result-tag">${t}</span>`).join('');
+}
+
+// Option selection
+document.querySelectorAll('.opt, .opt-row').forEach(opt => {
+  opt.addEventListener('click', function() {
+    const parent = this.closest('.options-grid, .options-list');
+    // Single select for list, multi for grid
+    if(parent.classList.contains('options-list')) {
+      parent.querySelectorAll('.opt-row').forEach(o => o.classList.remove('selected'));
+    }
+    this.classList.toggle('selected');
+  });
+});
+</script>
+<script src="../assets/js/site-nav.js"></script>
+</body>
+</html>

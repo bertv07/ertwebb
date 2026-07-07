@@ -705,7 +705,7 @@ function initContactAnimation() {
       });
 
       // --- 3. Enviar a n8n ---
-      const sendToN8n = fetch('http://localhost:5678/webhook-test/contacto-ertweb', {
+      const sendToN8n = fetch('https://n8n-n8n.lm6kjk.easypanel.host/webhook/contacto-ertweb', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -795,9 +795,9 @@ const translations = {
     nav_contact: 'Contacto',
     btn_contact: 'Contacto',
     services_title: 'Servicios/',
-    nav_optimization: '03 Optimización',
+    nav_optimization: '03 Automatizaciones',
     srv1_title: 'DESARROLLO\nFULL-STACK',
-    srv3_title: 'OPTIMIZACIÓN',
+    srv3_title: 'AUTOMATIZACIONES\nCON IA',
     about_title: 'DESARROLLADOR,\nDISEÑADOR',
     skills_heading: 'Habilidades',
     skills_col1: 'Lenguajes y Herramientas',

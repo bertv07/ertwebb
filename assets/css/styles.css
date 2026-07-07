@@ -11,6 +11,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.menu-left-center h1 {
+  font-size: .9rem;
+  margin-left: -10rem;
+}
+
 /* Prevent scrolling during animation */
 .no-scroll {
   overflow: hidden;
