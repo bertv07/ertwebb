@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad | ertweb</title>
+  <meta name="description"
+    content="Política de privacidad de ertweb: cómo recopilamos, usamos y protegemos tus datos, incluidos los obtenidos a través de WhatsApp, Messenger e Instagram.">
+  <link rel="canonical" href="https://ertweb.com/privacidad">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/site-nav.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ebebeb;
+      --surface: #ffffff;
+      --accent: #57286d;
+      --accent2: #7b3f96;
+      --text: #1a1a1a;
+      --muted: #666;
+      --line: rgba(0, 0, 0, 0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ===== HERO ENCABEZADO ===== */
+    .legal-hero {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 9rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+
+    .legal-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .legal-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    .legal-hero p {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .legal-updated {
+      display: inline-block;
+      margin-top: 1.6rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      background: rgba(87, 40, 109, 0.08);
+      border: 1px solid rgba(87, 40, 109, 0.25);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* ===== LAYOUT: ÍNDICE + CONTENIDO ===== */
+    .legal-layout {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Evita que la tabla (min-width) desborde el track de la grid */
+    .legal-layout > * {
+      min-width: 0;
+    }
+
+    /* Índice lateral sticky */
+    .legal-toc {
+      position: sticky;
+      top: 6rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .legal-toc h3 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .legal-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .legal-toc a {
+      counter-increment: toc;
+      display: block;
+      padding: 0.5rem 0.6rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .legal-toc a::before {
+      content: counter(toc) ". ";
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .legal-toc a:hover {
+      background: rgba(87, 40, 109, 0.07);
+      color: var(--accent);
+    }
+
+    /* Panel de contenido */
+    .legal-content {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 3rem 3rem 3.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    }
+
+    .legal-section {
+      scroll-margin-top: 6rem;
+      padding-bottom: 2.2rem;
+      margin-bottom: 2.2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .legal-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .legal-section h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .legal-section h2 .num {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .legal-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.4rem 0 0.5rem;
+    }
+
+    .legal-section p {
+      color: #3a3a3a;
+      font-size: 0.95rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .legal-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 0.4rem 0 1rem;
+    }
+
+    .legal-section ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: #3a3a3a;
+      font-size: 0.95rem;
+    }
+
+    .legal-section ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent2);
+    }
+
+    .legal-section a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* Callout destacado */
+    .callout {
+      background: linear-gradient(135deg, rgba(87, 40, 109, 0.06), rgba(123, 63, 150, 0.06));
+      border: 1px solid rgba(87, 40, 109, 0.2);
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin: 1.2rem 0;
+    }
+
+    .callout p {
+      margin-bottom: 0.4rem;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tabla de datos */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      min-width: 520px;
+    }
+
+    thead {
+      background: rgba(87, 40, 109, 0.06);
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Contacto */
+    .contact-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-chip {
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-chip span {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+      font-weight: 700;
+    }
+
+    .contact-chip a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .legal-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .legal-toc {
+        position: static;
+        top: auto;
+      }
+
+      .legal-content {
+        padding: 2rem 1.5rem 2.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .legal-hero {
+        padding: 7rem 1.25rem 2rem;
+      }
+
+      .legal-section h2 {
+        font-size: 1.15rem;
+      }
+
+      .legal-content {
+        padding: 1.6rem 1.2rem 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/img/logo-mark.png" alt="ertweb" class="nav-logo-img">
+    </a>
+    <ul class="site-nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="pages/automatizaciones.html">Automatizaciones</a></li>
+      <li><a href="pages/casos-de-estudio.html">Casos de estudio</a></li>
+      <li><a href="pages/experiencia-3d.html">Experiencia 3D</a></li>
+      <li><a href="pages/portal-clientes.html">Portal clientes</a></li>
+      <li><a href="pages/contact.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- BURGER (mobile) -->
+  <button id="burger" aria-label="Menu">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <div class="burger-overlay">
+    <div class="burger-content">
+      <ul class="burger-list">
+        <li>
+          <div class="burger-link-wrapper"><a href="index.html" class="burger-link">Inicio</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="pages/automatizaciones.html" class="burger-link">Automatizaciones</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="pages/casos-de-estudio.html" class="burger-link">Casos de estudio</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="pages/experiencia-3d.html" class="burger-link">Experiencia 3D</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="pages/portal-clientes.html" class="burger-link">Portal clientes</a></div>
+        </li>
+        <li>
+          <div class="burger-link-wrapper"><a href="pages/contact.html" class="burger-link">Contacto</a></div>
+        </li>
+      </ul>
+      <div class="burger-footer">
+        <span>Redes Sociales</span>
+        <div class="burger-social-links">
+          <a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank">instagram</a>
+          <a href="https://x.com/ertWeb" target="_blank">twitter</a>
+          <a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">tiktok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO -->
+  <header class="legal-hero">
+    <p class="legal-label">🔒 Legal</p>
+    <h1>Política de Privacidad</h1>
+    <p>En ertweb protegemos tu información con la misma seriedad con la que construimos nuestras automatizaciones. Aquí
+      te explicamos qué datos recopilamos, para qué los usamos y cómo puedes controlarlos.</p>
+    <span class="legal-updated">Última actualización: 10 de julio de 2026</span>
+  </header>
+
+  <!-- CONTENIDO -->
+  <div class="legal-layout">
+
+    <!-- Índice -->
+    <aside class="legal-toc">
+      <h3>Contenido</h3>
+      <ol>
+        <li><a href="#intro">Quiénes somos</a></li>
+        <li><a href="#datos">Datos que recopilamos</a></li>
+        <li><a href="#uso">Cómo usamos tus datos</a></li>
+        <li><a href="#meta">WhatsApp, Messenger e Instagram</a></li>
+        <li><a href="#terceros">Compartir con terceros</a></li>
+        <li><a href="#cookies">Cookies y analítica</a></li>
+        <li><a href="#conservacion">Conservación de datos</a></li>
+        <li><a href="#seguridad">Seguridad</a></li>
+        <li><a href="#derechos">Tus derechos</a></li>
+        <li><a href="#eliminacion">Eliminación de datos</a></li>
+        <li><a href="#menores">Menores de edad</a></li>
+        <li><a href="#cambios">Cambios en la política</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ol>
+    </aside>
+
+    <!-- Secciones -->
+    <main class="legal-content">
+
+      <section class="legal-section" id="intro">
+        <h2><span class="num">1</span>Quiénes somos</h2>
+        <p><strong>ertweb</strong> es un estudio de desarrollo web y automatización con inteligencia artificial con sede
+          en Caracas, Venezuela. Somos los responsables del tratamiento de los datos personales que recopilamos a través
+          de nuestro sitio web <strong>ertweb.com</strong> y de los canales que integramos para nuestros clientes
+          (WhatsApp, Messenger, Instagram, correo electrónico y formularios).</p>
+        <p>Esta política aplica a cualquier persona que interactúe con ertweb: visitantes del sitio, personas que
+          completan nuestros formularios y usuarios que nos escriben a través de plataformas de mensajería.</p>
+      </section>
+
+      <section class="legal-section" id="datos">
+        <h2><span class="num">2</span>Datos que recopilamos</h2>
+        <p>Solo recopilamos la información necesaria para responderte y prestar nuestros servicios. Nunca vendemos tus
+          datos. A continuación, un resumen de las categorías de datos que podemos tratar:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Datos concretos</th>
+                <th>Origen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Identificación</td>
+                <td>Nombre y apellido</td>
+                <td>Formularios, WhatsApp / Meta</td>
+              </tr>
+              <tr>
+                <td>Contacto</td>
+                <td>Correo electrónico, teléfono</td>
+                <td>Formularios, plataformas de Meta</td>
+              </tr>
+              <tr>
+                <td>Comunicaciones</td>
+                <td>Mensajes, consultas y su contenido</td>
+                <td>WhatsApp, Messenger, Instagram, web</td>
+              </tr>
+              <tr>
+                <td>Negocio</td>
+                <td>Sector, tamaño del equipo, herramientas, presupuesto</td>
+                <td>Formulario de diagnóstico / contacto</td>
+              </tr>
+              <tr>
+                <td>Técnicos</td>
+                <td>Dirección IP, tipo de navegador, cookies</td>
+                <td>Navegación en el sitio web</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>No solicitamos ni tratamos categorías especiales de datos (salud, religión, ideología, etc.). Por favor, no
+          nos envíes ese tipo de información a través de nuestros canales.</p>
+      </section>
+
+      <section class="legal-section" id="uso">
+        <h2><span class="num">3</span>Cómo usamos tus datos</h2>
+        <p>Utilizamos la información recopilada para los siguientes fines:</p>
+        <ul>
+          <li>Responder a tus consultas y solicitudes de presupuesto o diagnóstico.</li>
+          <li>Prestar, personalizar y mejorar nuestros servicios de automatización con IA.</li>
+          <li>Enviarte el diagnóstico personalizado que solicitas mediante nuestros formularios.</li>
+          <li>Operar chatbots y agentes de IA que atienden tus mensajes de forma automática.</li>
+          <li>Gestionar la relación comercial y dar seguimiento a leads.</li>
+          <li>Cumplir con obligaciones legales y prevenir usos fraudulentos o abusivos.</li>
+        </ul>
+        <p><strong>Bases legales:</strong> tratamos tus datos sobre la base de tu consentimiento (al escribirnos o
+          completar un formulario), la ejecución de un contrato o medidas precontractuales, y nuestro interés legítimo
+          en atender y mejorar el servicio.</p>
+      </section>
+
+      <section class="legal-section" id="meta">
+        <h2><span class="num">4</span>WhatsApp, Messenger e Instagram</h2>
+        <p>Integramos las plataformas de <strong>Meta</strong> (WhatsApp Business Platform, Messenger e Instagram) para
+          automatizar la atención al cliente y la captación de leads, tanto para ertweb como para nuestros clientes.</p>
+        <p>Cuando nos escribes por estos canales, recibimos y procesamos tu nombre de perfil, tu número o identificador y
+          el contenido de los mensajes que envías, con el único fin de atender tu solicitud. El uso que hacemos de los
+          datos obtenidos a través de las plataformas de Meta se rige por esta política y por las políticas de la propia
+          Meta.</p>
+        <div class="callout">
+          <p><strong>Importante:</strong> ertweb no está patrocinado ni avalado por Meta Platforms, Inc. «WhatsApp»,
+            «Messenger» e «Instagram» son marcas de Meta. El tratamiento de tus datos dentro de esas plataformas también
+            está sujeto a las condiciones y políticas de privacidad de Meta.</p>
+        </div>
+      </section>
+
+      <section class="legal-section" id="terceros">
+        <h2><span class="num">5</span>Compartir con terceros</h2>
+        <p>No vendemos ni alquilamos tus datos. Solo los compartimos con proveedores que nos ayudan a operar el servicio,
+          y únicamente en la medida necesaria:</p>
+        <ul>
+          <li><strong>Meta Platforms</strong> — mensajería a través de WhatsApp, Messenger e Instagram.</li>
+          <li><strong>Google</strong> (Tag Manager / Analytics) — medición y analítica del sitio web.</li>
+          <li><strong>n8n</strong> — orquestación de nuestras automatizaciones y flujos de trabajo.</li>
+          <li><strong>Web3Forms</strong> — entrega de los formularios de contacto a nuestro correo.</li>
+          <li><strong>Netlify</strong> — alojamiento del sitio web y respaldo de los envíos de formularios.</li>
+          <li><strong>Proveedores de modelos de IA</strong> (p. ej. OpenAI, Anthropic) — generación de respuestas
+            automáticas.</li>
+        </ul>
+        <p>Cada proveedor trata los datos según sus propias políticas de privacidad y solo para las finalidades
+          indicadas. También podremos divulgar información si la ley nos obliga a ello.</p>
+      </section>
+
+      <section class="legal-section" id="cookies">
+        <h2><span class="num">6</span>Cookies y analítica</h2>
+        <p>Nuestro sitio utiliza cookies y tecnologías similares a través de <strong>Google Tag Manager</strong> para
+          entender cómo se usa la web y mejorar la experiencia. Estas cookies pueden recoger datos como tu dirección IP,
+          páginas visitadas y tiempo de permanencia.</p>
+        <p>Puedes configurar tu navegador para bloquear o eliminar cookies en cualquier momento. Ten en cuenta que
+          algunas funciones del sitio podrían no comportarse correctamente si las desactivas.</p>
+      </section>
+
+      <section class="legal-section" id="conservacion">
+        <h2><span class="num">7</span>Conservación de datos</h2>
+        <p>Conservamos tus datos únicamente durante el tiempo necesario para cumplir con las finalidades descritas en
+          esta política, o mientras dure nuestra relación comercial. Cuando dejan de ser necesarios, los eliminamos o
+          anonimizamos de forma segura, salvo que debamos conservarlos por obligación legal.</p>
+      </section>
+
+      <section class="legal-section" id="seguridad">
+        <h2><span class="num">8</span>Seguridad</h2>
+        <p>Aplicamos medidas técnicas y organizativas razonables para proteger tus datos frente a accesos no
+          autorizados, pérdida o alteración: conexiones cifradas (HTTPS), acceso restringido y proveedores de confianza.
+          Sin embargo, ningún sistema es 100% infalible, por lo que no podemos garantizar una seguridad absoluta.</p>
+      </section>
+
+      <section class="legal-section" id="derechos">
+        <h2><span class="num">9</span>Tus derechos</h2>
+        <p>Tienes derecho a:</p>
+        <ul>
+          <li><strong>Acceder</strong> a los datos personales que tenemos sobre ti.</li>
+          <li><strong>Rectificar</strong> datos inexactos o incompletos.</li>
+          <li><strong>Eliminar</strong> tus datos («derecho al olvido»).</li>
+          <li><strong>Oponerte</strong> o <strong>limitar</strong> ciertos tratamientos.</li>
+          <li><strong>Retirar tu consentimiento</strong> en cualquier momento.</li>
+        </ul>
+        <p>Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:ertweb@gmail.com">ertweb@gmail.com</a>.
+          Responderemos en un plazo razonable.</p>
+      </section>
+
+      <section class="legal-section" id="eliminacion">
+        <h2><span class="num">10</span>Eliminación de datos</h2>
+        <p>Si deseas que eliminemos toda la información asociada a ti, incluidos los datos y mensajes obtenidos a través
+          de WhatsApp, Messenger o Instagram, puedes solicitarlo de forma gratuita:</p>
+        <div class="callout">
+          <p><strong>Cómo solicitar la eliminación:</strong></p>
+          <p>Envía un correo a <a href="mailto:ertweb@gmail.com">ertweb@gmail.com</a> con el asunto
+            <strong>«Eliminación de datos»</strong>, indicando el nombre, correo o número de teléfono con el que nos
+            contactaste. Procesaremos tu solicitud y confirmaremos la eliminación.</p>
+        </div>
+      </section>
+
+      <section class="legal-section" id="menores">
+        <h2><span class="num">11</span>Menores de edad</h2>
+        <p>Nuestros servicios están dirigidos a personas mayores de edad y a empresas. No recopilamos de forma
+          intencionada datos de menores. Si crees que un menor nos ha proporcionado información, contáctanos y la
+          eliminaremos.</p>
+      </section>
+
+      <section class="legal-section" id="cambios">
+        <h2><span class="num">12</span>Cambios en esta política</h2>
+        <p>Podemos actualizar esta política de privacidad para reflejar cambios en nuestros servicios o en la normativa
+          aplicable. Publicaremos siempre la versión vigente en esta misma página, indicando la fecha de la última
+          actualización en la parte superior.</p>
+      </section>
+
+      <section class="legal-section" id="contacto">
+        <h2><span class="num">13</span>Contacto</h2>
+        <p>Si tienes cualquier duda sobre esta política o sobre el tratamiento de tus datos, estamos a tu disposición:</p>
+        <div class="contact-box">
+          <div class="contact-chip">
+            <span>Correo</span>
+            <a href="mailto:ertweb@gmail.com">ertweb@gmail.com</a>
+          </div>
+          <div class="contact-chip">
+            <span>Ubicación</span>
+            Caracas, Venezuela
+          </div>
+          <div class="contact-chip">
+            <span>Web</span>
+            <a href="https://ertweb.com">ertweb.com</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer flat-top">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">ertweb</span>
+        <p class="footer-tagline">Diseño que piensa. Código que siente.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="pages/automatizaciones.html">Automatizaciones</a></li>
+          <li><a href="pages/casos-de-estudio.html">Casos de estudio</a></li>
+          <li><a href="pages/experiencia-3d.html">Experiencia 3D</a></li>
+          <li><a href="pages/portal-clientes.html">Portal clientes</a></li>
+          <li><a href="pages/contact.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Redes Sociales</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/ertwebv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              target="_blank">Instagram</a></li>
+          <li><a href="https://x.com/ertWeb" target="_blank">Twitter / X</a></li>
+          <li><a href="https://www.tiktok.com/@ertweb?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact-info">
+        <h4>Legal</h4>
+        <p><a href="privacidad.html" style="color:inherit;text-decoration:none;">Política de Privacidad</a></p>
+        <p>ertweb@gmail.com</p>
+        <p>Caracas, Venezuela</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 ertweb. Todos los derechos reservados.</p>
+      <p class="footer-crafted">Hecho con código y café ☕</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/site-nav.js"></script>
+</body>
+
+</html>
